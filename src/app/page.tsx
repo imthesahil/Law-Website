@@ -12,7 +12,6 @@ import {
   GraduationCap,
   Trophy,
   Star,
-  Play,
   Building,
   Shield,
   Briefcase,
@@ -24,10 +23,19 @@ import {
   Twitter,
   Youtube,
   Linkedin,
+  Calendar,
+  MapPin,
+  DollarSign,
+  FileText,
+  Upload,
+  Bell,
+  ExternalLink,
+  Quote,
 } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { useState, useRef } from "react"
 import Image from "next/image"
+import Link from "next/link"
 
 export default function LegalEducationWebsite() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
@@ -131,6 +139,100 @@ export default function LegalEducationWebsite() {
     },
   ]
 
+  const upcomingCompetitions = [
+    {
+      title: "National Constitutional Law Moot Court",
+      date: "March 15-17, 2025",
+      location: "Supreme Court of India, New Delhi",
+      prize: "₹2,00,000",
+      registrationDeadline: "February 28, 2025",
+      teams: 64,
+      status: "Registration Open",
+      description: "Premier constitutional law competition focusing on fundamental rights and judicial review.",
+    },
+    {
+      title: "International Commercial Arbitration Moot",
+      date: "April 22-24, 2025",
+      location: "Mumbai International Arbitration Centre",
+      prize: "₹1,50,000",
+      registrationDeadline: "March 30, 2025",
+      teams: 48,
+      status: "Registration Open",
+      description: "International arbitration competition with real-world commercial disputes.",
+    },
+    {
+      title: "Environmental Law Advocacy Challenge",
+      date: "May 10-12, 2025",
+      location: "National Green Tribunal, Delhi",
+      prize: "₹1,00,000",
+      registrationDeadline: "April 15, 2025",
+      teams: 32,
+      status: "Coming Soon",
+      description: "Focus on environmental protection and sustainable development legal frameworks.",
+    },
+  ]
+
+  const testimonials = [
+    {
+      name: "Priya Sharma",
+      role: "Law Student, NLSIU Bangalore",
+      image: "/placeholder.svg?height=100&width=100",
+      content:
+        "LegalAcademy's moot court training transformed my advocacy skills. I won the National Constitutional Moot after their intensive program. The mentorship and practical approach are unmatched.",
+      rating: 5,
+      competition: "National Constitutional Moot Winner 2024",
+    },
+    {
+      name: "Arjun Patel",
+      role: "Advocate, Gujarat High Court",
+      image: "/placeholder.svg?height=100&width=100",
+      content:
+        "The corporate law courses here are exceptional. Real case studies, expert faculty, and practical insights helped me excel in my practice. Highly recommend for serious legal professionals.",
+      rating: 5,
+      competition: "Corporate Law Specialist",
+    },
+    {
+      name: "Kavya Reddy",
+      role: "Final Year Student, NALSAR",
+      image: "/placeholder.svg?height=100&width=100",
+      content:
+        "From memorial writing to oral advocacy, LegalAcademy covers everything. Their competition portal made registration and submission seamless. Won 3 moots this year!",
+      rating: 5,
+      competition: "Multiple Moot Winner 2024",
+    },
+  ]
+
+  const announcements = [
+    {
+      title: "New Competition Portal Launch",
+      date: "January 15, 2025",
+      type: "Platform Update",
+      content: "Enhanced team management, memorial submission, and real-time updates now available.",
+      priority: "high",
+    },
+    {
+      title: "Judge Registration Open",
+      date: "January 12, 2025",
+      type: "Registration",
+      content: "Experienced advocates and judges can now register for upcoming moot court competitions.",
+      priority: "medium",
+    },
+    {
+      title: "Scholarship Program Announced",
+      date: "January 10, 2025",
+      type: "Scholarship",
+      content: "Merit-based scholarships available for underprivileged students. Applications open till February 28.",
+      priority: "high",
+    },
+    {
+      title: "Workshop: Advanced Legal Research",
+      date: "January 8, 2025",
+      type: "Workshop",
+      content: "Free workshop on advanced legal research techniques. Register now for limited seats.",
+      priority: "medium",
+    },
+  ]
+
   return (
     <div ref={containerRef} className="min-h-screen overflow-hidden">
       {/* Navigation */}
@@ -140,8 +242,8 @@ export default function LegalEducationWebsite() {
         transition={{ duration: 0.8, ease: "easeOut" }}
         className="fixed top-0 left-0 right-0 z-50 bg-[#1a5f3f]/95 backdrop-blur-sm border-b border-white/10"
       >
-        <div className="max-w-7xl mx-auto px-6 lg:px-20">
-          <div className="flex items-center justify-between h-20">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-20">
+          <div className="flex items-center justify-between h-16 sm:h-20">
             {/* Logo */}
             <motion.div
               variants={logoVariants}
@@ -157,7 +259,7 @@ export default function LegalEducationWebsite() {
 
             {/* Desktop Navigation */}
             <div className="hidden md:flex items-center space-x-8">
-              {["Courses", "Moot Courts", "About", "Success Stories"].map((item, index) => (
+              {["Courses", "Competitions", "Events", "Portals", "About"].map((item, index) => (
                 <motion.a
                   key={item}
                   href={`#${item.toLowerCase().replace(" ", "-")}`}
@@ -178,8 +280,11 @@ export default function LegalEducationWebsite() {
               transition={{ delay: 0.6, duration: 0.6 }}
               className="hidden md:block"
             >
-              <Button className="bg-[#d4af37] text-[#1a5f3f] hover:bg-[#d4af37]/90 font-medium px-6 py-2 rounded-lg transition-all duration-300 hover:scale-105">
-                Start Learning Today
+              <Button
+                className="bg-[#d4af37] text-[#1a5f3f] hover:bg-[#d4af37]/90 font-medium px-6 py-2 rounded-lg transition-all duration-300 hover:scale-105"
+                asChild
+              >
+                <Link href="/register">Register Now</Link>
               </Button>
             </motion.div>
 
@@ -197,8 +302,8 @@ export default function LegalEducationWebsite() {
           transition={{ duration: 0.3 }}
           className="md:hidden overflow-hidden bg-[#1a5f3f] border-t border-white/10"
         >
-          <div className="px-6 py-4 space-y-4">
-            {["Courses", "Moot Courts", "About", "Success Stories"].map((item) => (
+          <div className="px-4 sm:px-6 py-4 space-y-4">
+            {["Courses", "Competitions", "Events", "Portals", "About"].map((item) => (
               <a
                 key={item}
                 href={`#${item.toLowerCase().replace(" ", "-")}`}
@@ -209,7 +314,7 @@ export default function LegalEducationWebsite() {
               </a>
             ))}
             <Button className="w-full bg-[#d4af37] text-[#1a5f3f] hover:bg-[#d4af37]/90 font-medium">
-              Start Learning Today
+              Register Now
             </Button>
           </div>
         </motion.div>
@@ -220,8 +325,8 @@ export default function LegalEducationWebsite() {
         style={{ y: heroY, opacity: heroOpacity }}
         className="min-h-screen flex items-center pt-20 bg-[#1a5f3f] text-white"
       >
-        <div className="max-w-7xl mx-auto px-6 lg:px-20 w-full">
-          <div className="grid lg:grid-cols-5 gap-12 items-center">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-20 w-full">
+          <div className="grid lg:grid-cols-5 gap-8 lg:gap-12 items-center">
             {/* Left Column - Text Content (60%) */}
             <motion.div
               variants={containerVariants}
@@ -234,68 +339,100 @@ export default function LegalEducationWebsite() {
                 className="inline-flex items-center space-x-2 bg-[#d4af37]/20 px-4 py-2 rounded-full border border-[#d4af37]/30"
               >
                 <Star className="w-4 h-4 text-[#d4af37]" />
-                <span className="text-sm text-[#d4af37] font-medium">Top-Rated Legal Education Platform</span>
+                <span className="text-sm text-[#d4af37] font-medium">
+                  Solving Legal Education's Experiential Learning Gap
+                </span>
               </motion.div>
 
-              <motion.h1 variants={itemVariants} className="text-4xl lg:text-5xl xl:text-6xl font-normal leading-tight">
+              <motion.h1
+                variants={itemVariants}
+                className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-normal leading-tight"
+              >
                 Master Legal Excellence with
                 <br />
                 <span className="text-[#d4af37] font-medium">Expert-Led Courses</span>
-                <br />& Moot Court Training
+                <br />& Moot Court Competitions
               </motion.h1>
 
-              <motion.p variants={itemVariants} className="text-lg lg:text-xl text-white/90 leading-relaxed max-w-2xl">
-                Transform your legal career with comprehensive courses, practical moot court simulations, and expert
-                guidance. Learn from industry professionals and build the skills that matter in today's legal landscape.
+              <motion.p
+                variants={itemVariants}
+                className="text-base sm:text-lg lg:text-xl text-white/90 leading-relaxed max-w-2xl"
+              >
+                Bridging the experiential learning gap in legal education through practical moot court competitions,
+                expert-led training, and real-world simulations. Join India's most comprehensive legal education
+                ecosystem designed for aspiring advocates.
               </motion.p>
 
-              <motion.div variants={itemVariants} className="flex flex-col sm:flex-row gap-4 pt-4">
+              <motion.div variants={itemVariants} className="flex flex-col sm:flex-row gap-3 sm:gap-4 pt-4">
                 <Button
                   size="lg"
-                  className="bg-[#d4af37] text-[#1a5f3f] hover:bg-[#d4af37]/90 font-medium px-8 py-4 text-lg rounded-lg transition-all duration-300 hover:scale-105 hover:shadow-lg group"
+                  className="bg-[#d4af37] text-[#1a5f3f] hover:bg-[#d4af37]/90 font-medium px-6 sm:px-8 py-3 sm:py-4 text-base sm:text-lg rounded-lg transition-all duration-300 hover:scale-105 hover:shadow-lg group w-full sm:w-auto"
+                  asChild
                 >
-                  <BookOpen className="mr-2 w-5 h-5 group-hover:rotate-12 transition-transform duration-300" />
-                  Explore Courses
-                  <ChevronRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
+                  <Link href="/register">
+                    <Trophy className="mr-2 w-5 h-5 group-hover:rotate-12 transition-transform duration-300" />
+                    Register for Competition
+                    <ChevronRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
+                  </Link>
                 </Button>
                 <Button
                   size="lg"
-                  className="bg-transparent border-2 border-[#d4af37] text-[#d4af37] hover:bg-[#d4af37] hover:text-[#1a5f3f] font-medium px-8 py-4 text-lg rounded-lg transition-all duration-300 hover:scale-105 group"
+                  className="bg-transparent border-2 border-[#d4af37] text-[#d4af37] hover:bg-[#d4af37] hover:text-[#1a5f3f] font-medium px-6 sm:px-8 py-3 sm:py-4 text-base sm:text-lg rounded-lg transition-all duration-300 hover:scale-105 group w-full sm:w-auto"
+                  asChild
                 >
-                  <Play className="mr-2 w-5 h-5 group-hover:scale-110 transition-transform duration-300" />
-                  Watch Demo
+                  <Link href="/submit-memorial">
+                    <FileText className="mr-2 w-5 h-5 group-hover:scale-110 transition-transform duration-300" />
+                    Submit Memorial
+                  </Link>
                 </Button>
               </motion.div>
 
-              {/* Features */}
-              <motion.div variants={itemVariants} className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-6">
-                {[
-                  { icon: Trophy, text: "Expert-Led Moot Courts" },
-                  { icon: BookOpen, text: "Comprehensive Curriculum" },
-                  { icon: Users, text: "Interactive Learning" },
-                  { icon: Award, text: "Industry Recognition" },
-                ].map((feature, index) => (
-                  <motion.div
-                    key={feature.text}
-                    initial={{ opacity: 0, x: -20 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ delay: 1.2 + index * 0.1, duration: 0.6 }}
-                    className="flex items-center space-x-3 text-white/80"
-                  >
-                    <div className="w-8 h-8 bg-[#d4af37]/20 rounded-lg flex items-center justify-center">
-                      <feature.icon className="w-4 h-4 text-[#d4af37]" />
-                    </div>
-                    <span className="text-sm font-medium">{feature.text}</span>
-                  </motion.div>
-                ))}
+              {/* Quick Actions */}
+              <motion.div variants={itemVariants} className="flex flex-wrap gap-3 pt-4">
+                <Button
+                  variant="outline"
+                  size="sm"
+                  className="border-white/30 text-white hover:bg-white/10 hover:border-white/50 bg-transparent"
+                  asChild
+                >
+                  <Link href="/portals/team">
+                    <Upload className="mr-2 w-4 h-4" />
+                    Team Portal
+                  </Link>
+                </Button>
+                <Button
+                  variant="outline"
+                  size="sm"
+                  className="border-white/30 text-white hover:bg-white/10 hover:border-white/50 bg-transparent"
+                  asChild
+                >
+                  <Link href="/portals/judge">
+                    <Scale className="mr-2 w-4 h-4" />
+                    Judge Portal
+                  </Link>
+                </Button>
+                <Button
+                  variant="outline"
+                  size="sm"
+                  className="border-white/30 text-white hover:bg-white/10 hover:border-white/50 bg-transparent"
+                  asChild
+                >
+                  <Link href="/events">
+                    <Calendar className="mr-2 w-4 h-4" />
+                    Events Calendar
+                  </Link>
+                </Button>
               </motion.div>
 
               {/* Stats */}
-              <motion.div variants={itemVariants} className="grid grid-cols-3 gap-8 pt-8 border-t border-white/20">
+              <motion.div
+                variants={itemVariants}
+                className="grid grid-cols-3 gap-4 sm:gap-8 pt-8 border-t border-white/20"
+              >
                 {[
-                  { number: "5000+", label: "Students Enrolled" },
-                  { number: "50+", label: "Expert Courses" },
-                  { number: "95%", label: "Success Rate" },
+                  { number: "50+", label: "Active Competitions" },
+                  { number: "10,000+", label: "Students Registered" },
+                  { number: "₹50L+", label: "Prize Money" },
                 ].map((stat, index) => (
                   <motion.div
                     key={stat.label}
@@ -305,12 +442,38 @@ export default function LegalEducationWebsite() {
                     className="text-center group cursor-pointer"
                     whileHover={{ scale: 1.05 }}
                   >
-                    <div className="text-3xl lg:text-4xl font-light text-[#d4af37] mb-2 group-hover:text-[#d4af37]/80 transition-colors duration-300">
+                    <div className="text-2xl sm:text-3xl lg:text-4xl font-light text-[#d4af37] mb-2 group-hover:text-[#d4af37]/80 transition-colors duration-300">
                       {stat.number}
                     </div>
-                    <div className="text-sm text-white/80">{stat.label}</div>
+                    <div className="text-xs sm:text-sm text-white/80">{stat.label}</div>
                   </motion.div>
                 ))}
+              </motion.div>
+
+              {/* Value Proposition */}
+              <motion.div
+                variants={itemVariants}
+                className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 mt-8 border border-white/20"
+              >
+                <h3 className="text-lg font-medium text-[#d4af37] mb-3">Why Choose LegalAcademy?</h3>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-sm text-white/90">
+                  <div className="flex items-center">
+                    <div className="w-2 h-2 bg-[#d4af37] rounded-full mr-3"></div>
+                    <span>Practical, hands-on legal training</span>
+                  </div>
+                  <div className="flex items-center">
+                    <div className="w-2 h-2 bg-[#d4af37] rounded-full mr-3"></div>
+                    <span>Real courtroom simulation experience</span>
+                  </div>
+                  <div className="flex items-center">
+                    <div className="w-2 h-2 bg-[#d4af37] rounded-full mr-3"></div>
+                    <span>Expert mentorship from practicing lawyers</span>
+                  </div>
+                  <div className="flex items-center">
+                    <div className="w-2 h-2 bg-[#d4af37] rounded-full mr-3"></div>
+                    <span>Industry-recognized certifications</span>
+                  </div>
+                </div>
               </motion.div>
             </motion.div>
 
@@ -337,7 +500,7 @@ export default function LegalEducationWebsite() {
                   alt="Lady Justice statue representing legal education excellence"
                   width={500}
                   height={700}
-                  className="w-full max-w-md lg:max-w-lg xl:max-w-xl h-auto object-contain"
+                  className="w-full max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg xl:max-w-xl h-auto object-contain"
                   priority
                 />
 
@@ -349,15 +512,16 @@ export default function LegalEducationWebsite() {
         </div>
       </motion.section>
 
-      {/* Course Categories Section - White Background */}
+      {/* Upcoming Competitions Section - White Background */}
       <motion.section
         initial={{ opacity: 0, y: 50 }}
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8 }}
         viewport={{ once: true }}
-        className="py-20 bg-white text-gray-800"
+        className="py-12 sm:py-16 lg:py-20 bg-white text-gray-800"
+        id="competitions"
       >
-        <div className="max-w-7xl mx-auto px-6 lg:px-20">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-20">
           <motion.div
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
@@ -365,14 +529,132 @@ export default function LegalEducationWebsite() {
             viewport={{ once: true }}
             className="text-center mb-16"
           >
-            <h2 className="text-4xl lg:text-5xl font-light mb-6 text-gray-800">Explore Our Perfect Course Areas</h2>
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-light mb-6 text-gray-800">
+              Upcoming Moot Court Competitions
+            </h2>
+            <p className="text-gray-600 text-lg max-w-2xl mx-auto leading-relaxed">
+              Participate in India's most prestigious moot court competitions. Build your advocacy skills and compete
+              for substantial prizes.
+            </p>
+          </motion.div>
+
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 lg:gap-8">
+            {upcomingCompetitions.map((competition, index) => (
+              <motion.div
+                key={competition.title}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ delay: index * 0.2, duration: 0.6 }}
+                viewport={{ once: true }}
+                whileHover={{ y: -10, scale: 1.02 }}
+                className="bg-white border border-gray-200 rounded-2xl p-6 lg:p-8 shadow-lg hover:shadow-xl transition-all duration-300 relative overflow-hidden"
+              >
+                {/* Status Badge */}
+                <div
+                  className={`absolute top-4 right-4 px-3 py-1 rounded-full text-xs font-medium ${
+                    competition.status === "Registration Open"
+                      ? "bg-green-100 text-green-800"
+                      : "bg-yellow-100 text-yellow-800"
+                  }`}
+                >
+                  {competition.status}
+                </div>
+
+                <div className="mb-6">
+                  <h3 className="text-xl font-semibold mb-3 text-gray-800 pr-20">{competition.title}</h3>
+                  <p className="text-gray-600 text-sm leading-relaxed">{competition.description}</p>
+                </div>
+
+                <div className="space-y-3 mb-6">
+                  <div className="flex items-center text-sm text-gray-600">
+                    <Calendar className="w-4 h-4 mr-3 text-[#1a5f3f]" />
+                    <span>{competition.date}</span>
+                  </div>
+                  <div className="flex items-center text-sm text-gray-600">
+                    <MapPin className="w-4 h-4 mr-3 text-[#1a5f3f]" />
+                    <span>{competition.location}</span>
+                  </div>
+                  <div className="flex items-center text-sm text-gray-600">
+                    <DollarSign className="w-4 h-4 mr-3 text-[#1a5f3f]" />
+                    <span>Prize Money: {competition.prize}</span>
+                  </div>
+                  <div className="flex items-center text-sm text-gray-600">
+                    <Users className="w-4 h-4 mr-3 text-[#1a5f3f]" />
+                    <span>{competition.teams} Teams Maximum</span>
+                  </div>
+                  <div className="flex items-center text-sm text-red-600">
+                    <Clock className="w-4 h-4 mr-3 text-red-500" />
+                    <span>Registration Deadline: {competition.registrationDeadline}</span>
+                  </div>
+                </div>
+
+                <div className="flex flex-col sm:flex-row gap-3">
+                  <Button
+                    className="bg-[#1a5f3f] text-white hover:bg-[#1a5f3f]/90 transition-all duration-300 group flex-1"
+                    disabled={competition.status === "Coming Soon"}
+                  >
+                    <Trophy className="mr-2 w-4 h-4 group-hover:rotate-12 transition-transform duration-300" />
+                    {competition.status === "Coming Soon" ? "Coming Soon" : "Register Now"}
+                  </Button>
+                  <Button
+                    variant="outline"
+                    className="border-[#1a5f3f] text-[#1a5f3f] hover:bg-[#1a5f3f] hover:text-white transition-all duration-300 bg-transparent"
+                  >
+                    <ExternalLink className="mr-2 w-4 h-4" />
+                    Details
+                  </Button>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.6, duration: 0.6 }}
+            viewport={{ once: true }}
+            className="text-center mt-12"
+          >
+            <Button
+              size="lg"
+              className="bg-[#d4af37] text-[#1a5f3f] hover:bg-[#d4af37]/90 font-medium px-8 py-4 text-lg rounded-lg transition-all duration-300 hover:scale-105"
+              asChild
+            >
+              <Link href="/competitions">
+                View All Competitions
+                <ArrowRight className="ml-2 w-5 h-5" />
+              </Link>
+            </Button>
+          </motion.div>
+        </div>
+      </motion.section>
+
+      {/* Course Categories Section - Light Gray Background */}
+      <motion.section
+        initial={{ opacity: 0, y: 50 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8 }}
+        viewport={{ once: true }}
+        className="py-12 sm:py-16 lg:py-20 bg-gray-50 text-gray-800"
+      >
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-20">
+          <motion.div
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            transition={{ delay: 0.2, duration: 0.6 }}
+            viewport={{ once: true }}
+            className="text-center mb-16"
+          >
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-light mb-6 text-gray-800">
+              Explore Our Perfect Course Areas
+            </h2>
             <p className="text-gray-600 text-lg max-w-2xl mx-auto leading-relaxed">
               Discover our course areas—specialized expertise providing tailored legal education for your unique
               learning needs.
             </p>
           </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
             {[
               {
                 icon: Building,
@@ -406,7 +688,7 @@ export default function LegalEducationWebsite() {
                 transition={{ delay: index * 0.2, duration: 0.6 }}
                 viewport={{ once: true }}
                 whileHover={{ y: -10, scale: 1.02 }}
-                className="bg-white border border-gray-200 rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300"
+                className="bg-white border border-gray-200 rounded-2xl p-6 lg:p-8 shadow-lg hover:shadow-xl transition-all duration-300"
               >
                 <div className={`w-16 h-16 ${course.bgColor} rounded-2xl flex items-center justify-center mb-6`}>
                   <course.icon className={`w-8 h-8 ${course.color}`} />
@@ -415,7 +697,7 @@ export default function LegalEducationWebsite() {
                 <p className="text-gray-600 leading-relaxed mb-6">{course.description}</p>
                 <Button
                   variant="outline"
-                  className="border-[#1a5f3f] text-[#1a5f3f] hover:bg-[#1a5f3f] hover:text-white transition-all duration-300 group"
+                  className="border-[#1a5f3f] text-[#1a5f3f] hover:bg-[#1a5f3f] hover:text-white transition-all duration-300 group bg-transparent"
                 >
                   Learn More
                   <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform duration-300" />
@@ -426,16 +708,183 @@ export default function LegalEducationWebsite() {
         </div>
       </motion.section>
 
-      {/* About Section - Light Green Background */}
+      {/* Testimonials Section - White Background */}
       <motion.section
         initial={{ opacity: 0, y: 50 }}
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8 }}
         viewport={{ once: true }}
-        className="py-20 bg-[#c8e6c9] text-gray-800"
+        className="py-12 sm:py-16 lg:py-20 bg-white text-gray-800"
       >
-        <div className="max-w-7xl mx-auto px-6 lg:px-20">
-          <div className="grid lg:grid-cols-2 gap-16 items-center">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-20">
+          <motion.div
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            transition={{ delay: 0.2, duration: 0.6 }}
+            viewport={{ once: true }}
+            className="text-center mb-16"
+          >
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-light mb-6 text-gray-800">
+              Success Stories from Our Students
+            </h2>
+            <p className="text-gray-600 text-lg max-w-2xl mx-auto leading-relaxed">
+              Hear from our successful students who have excelled in moot courts and legal careers with our training.
+            </p>
+          </motion.div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+            {testimonials.map((testimonial, index) => (
+              <motion.div
+                key={testimonial.name}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ delay: index * 0.2, duration: 0.6 }}
+                viewport={{ once: true }}
+                whileHover={{ y: -5, scale: 1.02 }}
+                className="bg-gray-50 border border-gray-200 rounded-2xl p-6 lg:p-8 shadow-lg hover:shadow-xl transition-all duration-300 relative"
+              >
+                <div className="absolute top-6 right-6">
+                  <Quote className="w-8 h-8 text-[#d4af37]/30" />
+                </div>
+
+                <div className="flex items-center mb-4">
+                  <Image
+                    src={testimonial.image || "/placeholder.svg"}
+                    alt={testimonial.name}
+                    width={60}
+                    height={60}
+                    className="w-15 h-15 rounded-full object-cover mr-4"
+                  />
+                  <div>
+                    <h4 className="font-semibold text-gray-800">{testimonial.name}</h4>
+                    <p className="text-sm text-gray-600">{testimonial.role}</p>
+                  </div>
+                </div>
+
+                <div className="flex items-center mb-4">
+                  {[...Array(testimonial.rating)].map((_, i) => (
+                    <Star key={i} className="w-4 h-4 text-[#d4af37] fill-current" />
+                  ))}
+                </div>
+
+                <p className="text-gray-700 leading-relaxed mb-4 italic">"{testimonial.content}"</p>
+
+                <div className="flex items-center text-sm text-[#1a5f3f] font-medium">
+                  <Trophy className="w-4 h-4 mr-2" />
+                  {testimonial.competition}
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </motion.section>
+
+      {/* Announcements/News Section - Light Green Background */}
+      <motion.section
+        initial={{ opacity: 0, y: 50 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8 }}
+        viewport={{ once: true }}
+        className="py-12 sm:py-16 lg:py-20 bg-[#c8e6c9] text-gray-800"
+      >
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-20">
+          <motion.div
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            transition={{ delay: 0.2, duration: 0.6 }}
+            viewport={{ once: true }}
+            className="text-center mb-16"
+          >
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-light mb-6 text-gray-800">
+              Latest Announcements & News
+            </h2>
+            <p className="text-gray-600 text-lg max-w-2xl mx-auto leading-relaxed">
+              Stay updated with the latest news, announcements, and important updates from LegalAcademy.
+            </p>
+          </motion.div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
+            {announcements.map((announcement, index) => (
+              <motion.div
+                key={announcement.title}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ delay: index * 0.1, duration: 0.6 }}
+                viewport={{ once: true }}
+                whileHover={{ y: -5, scale: 1.02 }}
+                className="bg-white border border-gray-200 rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 relative"
+              >
+                <div className="flex items-start justify-between mb-4">
+                  <div className="flex items-center">
+                    <div
+                      className={`w-3 h-3 rounded-full mr-3 ${
+                        announcement.priority === "high" ? "bg-red-500" : "bg-yellow-500"
+                      }`}
+                    ></div>
+                    <span
+                      className={`text-xs font-medium px-2 py-1 rounded-full ${
+                        announcement.type === "Platform Update"
+                          ? "bg-blue-100 text-blue-800"
+                          : announcement.type === "Registration"
+                            ? "bg-green-100 text-green-800"
+                            : announcement.type === "Scholarship"
+                              ? "bg-purple-100 text-purple-800"
+                              : "bg-gray-100 text-gray-800"
+                      }`}
+                    >
+                      {announcement.type}
+                    </span>
+                  </div>
+                  <span className="text-xs text-gray-500">{announcement.date}</span>
+                </div>
+
+                <h3 className="text-xl font-semibold mb-3 text-gray-800">{announcement.title}</h3>
+                <p className="text-gray-600 leading-relaxed mb-4">{announcement.content}</p>
+
+                <Button
+                  variant="outline"
+                  size="sm"
+                  className="border-[#1a5f3f] text-[#1a5f3f] hover:bg-[#1a5f3f] hover:text-white transition-all duration-300 bg-transparent"
+                >
+                  Read More
+                  <ArrowRight className="ml-2 w-4 h-4" />
+                </Button>
+              </motion.div>
+            ))}
+          </div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.6, duration: 0.6 }}
+            viewport={{ once: true }}
+            className="text-center mt-12"
+          >
+            <Button
+              size="lg"
+              className="bg-[#1a5f3f] text-white hover:bg-[#1a5f3f]/90 font-medium px-8 py-4 text-lg rounded-lg transition-all duration-300 hover:scale-105"
+              asChild
+            >
+              <Link href="/announcements">
+                <Bell className="mr-2 w-5 h-5" />
+                View All Announcements
+              </Link>
+            </Button>
+          </motion.div>
+        </div>
+      </motion.section>
+
+      {/* About Section - White Background */}
+      <motion.section
+        initial={{ opacity: 0, y: 50 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8 }}
+        viewport={{ once: true }}
+        className="py-12 sm:py-16 lg:py-20 bg-white text-gray-800"
+        id="about"
+      >
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-20">
+          <div className="grid lg:grid-cols-2 gap-8 lg:gap-16 items-center">
             {/* Left Column - Content */}
             <motion.div
               initial={{ opacity: 0, x: -50 }}
@@ -445,7 +894,7 @@ export default function LegalEducationWebsite() {
               className="space-y-6"
             >
               <div className="text-sm font-medium text-gray-600 uppercase tracking-wider">About us</div>
-              <h2 className="text-4xl lg:text-5xl font-light leading-tight text-gray-800">
+              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-light leading-tight text-gray-800">
                 Leading the way in delivering justice through tailored education.
               </h2>
               <p className="text-lg text-gray-700 leading-relaxed">
@@ -461,12 +910,12 @@ export default function LegalEducationWebsite() {
               whileInView={{ opacity: 1, x: 0 }}
               transition={{ delay: 0.4, duration: 0.8 }}
               viewport={{ once: true }}
-              className="grid grid-cols-1 sm:grid-cols-3 gap-8"
+              className="grid grid-cols-1 sm:grid-cols-3 gap-6 lg:gap-8"
             >
               {[
                 { number: "95%", label: "Success Rate", icon: Target },
                 { number: "10+ years", label: "Years Experience", icon: Clock },
-                { number: "5000+", label: "Students Trained", icon: Users },
+                { number: "10,000+", label: "Students Trained", icon: Users },
               ].map((stat, index) => (
                 <motion.div
                   key={stat.label}
@@ -477,7 +926,7 @@ export default function LegalEducationWebsite() {
                   whileHover={{ scale: 1.05 }}
                   className="text-center space-y-3"
                 >
-                  <div className="w-16 h-16 bg-white/50 rounded-2xl flex items-center justify-center mx-auto mb-4">
+                  <div className="w-16 h-16 bg-gray-100 rounded-2xl flex items-center justify-center mx-auto mb-4">
                     <stat.icon className="w-8 h-8 text-[#1a5f3f]" />
                   </div>
                   <div className="text-4xl lg:text-5xl font-light text-gray-800">{stat.number}</div>
@@ -489,15 +938,15 @@ export default function LegalEducationWebsite() {
         </div>
       </motion.section>
 
-      {/* Meet Our Instructors Section - White Background */}
+      {/* Meet Our Instructors Section - Light Gray Background */}
       <motion.section
         initial={{ opacity: 0, y: 50 }}
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8 }}
         viewport={{ once: true }}
-        className="py-20 bg-white text-gray-800"
+        className="py-12 sm:py-16 lg:py-20 bg-gray-50 text-gray-800"
       >
-        <div className="max-w-7xl mx-auto px-6 lg:px-20">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-20">
           <motion.div
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
@@ -505,14 +954,16 @@ export default function LegalEducationWebsite() {
             viewport={{ once: true }}
             className="text-center mb-16"
           >
-            <h2 className="text-4xl lg:text-5xl font-light mb-6 text-gray-800">Meet Our Expert Instructors</h2>
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-light mb-6 text-gray-800">
+              Meet Our Expert Instructors
+            </h2>
             <p className="text-gray-600 text-lg max-w-2xl mx-auto leading-relaxed">
               Our expert instructors deliver top-tier legal education with proven success and years of practical
               experience.
             </p>
           </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-6">
             {instructors.map((instructor, index) => (
               <motion.div
                 key={instructor.name}
@@ -524,7 +975,9 @@ export default function LegalEducationWebsite() {
                 className="group cursor-pointer"
               >
                 <div className="relative overflow-hidden rounded-2xl">
-                  <div className={`h-80 bg-gradient-to-br ${instructor.gradient} flex items-end p-6 relative`}>
+                  <div
+                    className={`h-64 sm:h-80 bg-gradient-to-br ${instructor.gradient} flex items-end p-4 sm:p-6 relative`}
+                  >
                     <Image
                       src={instructor.image || "/placeholder.svg"}
                       alt={instructor.name}
@@ -550,15 +1003,15 @@ export default function LegalEducationWebsite() {
         </div>
       </motion.section>
 
-      {/* FAQ Section - Light Gray Background */}
+      {/* FAQ Section - White Background */}
       <motion.section
         initial={{ opacity: 0, y: 50 }}
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8 }}
         viewport={{ once: true }}
-        className="py-20 bg-gray-50 text-gray-800"
+        className="py-12 sm:py-16 lg:py-20 bg-white text-gray-800"
       >
-        <div className="max-w-4xl mx-auto px-6 lg:px-20">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-20">
           <motion.div
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
@@ -566,7 +1019,9 @@ export default function LegalEducationWebsite() {
             viewport={{ once: true }}
             className="text-center mb-16"
           >
-            <h2 className="text-4xl lg:text-5xl font-light mb-6 text-gray-800">Quick Answers for Peace of Mind</h2>
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-light mb-6 text-gray-800">
+              Quick Answers for Peace of Mind
+            </h2>
             <p className="text-gray-600 text-lg max-w-2xl mx-auto leading-relaxed">
               Find answers to common questions about our legal education and training services.
             </p>
@@ -580,13 +1035,13 @@ export default function LegalEducationWebsite() {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ delay: index * 0.1, duration: 0.6 }}
                 viewport={{ once: true }}
-                className="bg-white rounded-xl border border-gray-200 overflow-hidden"
+                className="bg-gray-50 rounded-xl border border-gray-200 overflow-hidden"
               >
                 <button
                   onClick={() => setOpenFaq(openFaq === index ? null : index)}
-                  className="w-full px-6 py-6 text-left flex items-center justify-between hover:bg-gray-50 transition-colors duration-200"
+                  className="w-full px-4 sm:px-6 py-4 sm:py-6 text-left flex items-center justify-between hover:bg-gray-100 transition-colors duration-200"
                 >
-                  <span className="text-lg font-medium text-gray-800">{faq.question}</span>
+                  <span className="text-base sm:text-lg font-medium text-gray-800 pr-4">{faq.question}</span>
                   <motion.div animate={{ rotate: openFaq === index ? 180 : 0 }} transition={{ duration: 0.3 }}>
                     <ChevronDown className="w-5 h-5 text-gray-500" />
                   </motion.div>
@@ -600,7 +1055,9 @@ export default function LegalEducationWebsite() {
                   transition={{ duration: 0.3 }}
                   className="overflow-hidden"
                 >
-                  <div className="px-6 pb-6 text-gray-600 leading-relaxed">{faq.answer}</div>
+                  <div className="px-4 sm:px-6 pb-4 sm:pb-6 text-gray-600 leading-relaxed text-sm sm:text-base">
+                    {faq.answer}
+                  </div>
                 </motion.div>
               </motion.div>
             ))}
@@ -614,9 +1071,9 @@ export default function LegalEducationWebsite() {
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8 }}
         viewport={{ once: true }}
-        className="py-20 bg-white"
+        className="py-12 sm:py-16 lg:py-20 bg-gray-50"
       >
-        <div className="max-w-7xl mx-auto px-6 lg:px-20">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-20">
           <motion.h3
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
@@ -627,7 +1084,7 @@ export default function LegalEducationWebsite() {
             Trusted by Leading Law Schools & Legal Institutions
           </motion.h3>
 
-          <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-8 items-center">
+          <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 gap-4 lg:gap-8 items-center">
             {[
               { icon: GraduationCap, name: "Law Schools" },
               { icon: Scale, name: "Bar Associations" },
@@ -643,7 +1100,7 @@ export default function LegalEducationWebsite() {
                 transition={{ delay: index * 0.1, duration: 0.6 }}
                 viewport={{ once: true }}
                 whileHover={{ scale: 1.05 }}
-                className="flex flex-col items-center space-y-3 p-4 rounded-lg hover:bg-gray-50 transition-all duration-300"
+                className="flex flex-col items-center space-y-3 p-4 rounded-lg hover:bg-white transition-all duration-300"
               >
                 <partner.icon className="w-8 h-8 text-gray-400" />
                 <span className="text-sm text-gray-500 text-center">{partner.name}</span>
@@ -655,8 +1112,8 @@ export default function LegalEducationWebsite() {
 
       {/* Footer Section - Dark Green Background */}
       <footer className="bg-[#1a5f3f] text-white py-16">
-        <div className="max-w-7xl mx-auto px-6 lg:px-20">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-12">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-20">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 mb-8 lg:mb-12">
             {/* Left Column - Brand & Description */}
             <motion.div
               initial={{ opacity: 0, y: 30 }}
@@ -675,18 +1132,20 @@ export default function LegalEducationWebsite() {
 
               {/* Description */}
               <p className="text-white/80 leading-relaxed max-w-md">
-                A legal education platform is an innovative learning environment designed to provide comprehensive legal
-                training and moot court excellence. The primary service offered by our academy is transformative legal
-                education.
+                India's premier legal education platform providing comprehensive moot court training, competitions, and
+                expert-led courses. Join thousands of successful legal professionals who started their journey with us.
               </p>
 
               {/* CTA Button */}
-              <Button className="bg-[#d4af37] text-[#1a5f3f] hover:bg-[#d4af37]/90 font-medium px-6 py-3 rounded-lg transition-all duration-300 hover:scale-105">
-                Start Learning Today
+              <Button
+                className="bg-[#d4af37] text-[#1a5f3f] hover:bg-[#d4af37]/90 font-medium px-6 py-3 rounded-lg transition-all duration-300 hover:scale-105"
+                asChild
+              >
+                <Link href="/register">Register for Competition</Link>
               </Button>
 
               {/* Social Media Icons */}
-              <div className="flex space-x-4">
+              <div className="flex space-x-3 sm:space-x-4">
                 {[
                   { icon: Facebook, name: "Facebook", href: "#" },
                   { icon: Twitter, name: "Twitter", href: "#" },
@@ -712,13 +1171,13 @@ export default function LegalEducationWebsite() {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.2 }}
               viewport={{ once: true }}
-              className="grid grid-cols-1 md:grid-cols-3 gap-8"
+              className="grid grid-cols-1 sm:grid-cols-3 gap-6 lg:gap-8"
             >
               {/* Main Pages */}
               <div className="space-y-4">
                 <h4 className="text-lg font-medium text-white mb-4">Main Pages</h4>
                 <div className="space-y-3">
-                  {["Home", "Courses", "About", "Blog"].map((link) => (
+                  {["Home", "Competitions", "Courses", "Events", "About"].map((link) => (
                     <a
                       key={link}
                       href={`#${link.toLowerCase()}`}
@@ -730,11 +1189,11 @@ export default function LegalEducationWebsite() {
                 </div>
               </div>
 
-              {/* Course Categories */}
+              {/* Portals */}
               <div className="space-y-4">
-                <h4 className="text-lg font-medium text-white mb-4">Course Categories</h4>
+                <h4 className="text-lg font-medium text-white mb-4">Portals</h4>
                 <div className="space-y-3">
-                  {["Constitutional Law", "Corporate Law", "Moot Courts", "Legal Research", "Case Studies"].map(
+                  {["Team Portal", "Judge Portal", "Admin Panel", "Competition Portal", "Events Calendar"].map(
                     (link) => (
                       <a
                         key={link}
@@ -752,17 +1211,21 @@ export default function LegalEducationWebsite() {
               <div className="space-y-4">
                 <h4 className="text-lg font-medium text-white mb-4">Services</h4>
                 <div className="space-y-3">
-                  {["Legal Training", "Moot Court Prep", "Career Guidance", "Certification", "Expert Mentoring"].map(
-                    (link) => (
-                      <a
-                        key={link}
-                        href="#"
-                        className="block text-white/70 hover:text-[#d4af37] transition-colors duration-300"
-                      >
-                        {link}
-                      </a>
-                    ),
-                  )}
+                  {[
+                    "Moot Court Training",
+                    "Legal Courses",
+                    "Competition Management",
+                    "Memorial Review",
+                    "Expert Mentoring",
+                  ].map((link) => (
+                    <a
+                      key={link}
+                      href="#"
+                      className="block text-white/70 hover:text-[#d4af37] transition-colors duration-300"
+                    >
+                      {link}
+                    </a>
+                  ))}
                 </div>
               </div>
             </motion.div>
