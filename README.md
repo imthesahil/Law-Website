@@ -13,23 +13,7 @@ A centralized web platform to host and manage **Moot Court**, **ADR simulations*
 
 ---
 
-📁 Project Structure
-
-src/
-├── app/ # Next.js App Router structure
-│ ├── announcements/ # Announcement page
-│ ├── competitions/ # Competitions page
-│ ├── events/ # Events page (calendar, schedules)
-│ ├── portals/ # Judge/Team/Admin portals
-│ ├── register/ # Team registration form
-│ ├── submit-memorial/ # Document submission portal
-│ ├── layout.tsx # Root layout (navbar/footer)
-│ └── page.tsx # Home page
-├── components/ # Reusable UI components
-├── lib/ # Helper functions / utilities
-├── public/ # Static assets (images, icons)
-├── styles/
-│ └── globals.css # Global Tailwind styles
+<pre> ## 📁 Project Structure ```bash src/ ├── app/ # Next.js App Router structure │ ├── announcements/ # Announcement page │ ├── competitions/ # Competitions page │ ├── events/ # Events page (calendar, schedules) │ ├── portals/ # Judge/Team/Admin portals │ ├── register/ # Team registration form │ ├── submit-memorial/ # Document submission portal │ ├── layout.tsx # Root layout (navbar/footer) │ └── page.tsx # Home page ├── components/ # Reusable UI components ├── lib/ # Helper functions / utilities ├── public/ # Static assets (images, icons) ├── styles/ │ └── globals.css # Global Tailwind styles ``` </pre>
 
 ---
 
