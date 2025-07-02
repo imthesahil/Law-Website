@@ -251,26 +251,71 @@ export default function LegalEducationWebsite() {
               animate="visible"
               className="flex items-center space-x-3"
             >
-              <div className="w-10 h-10 bg-[#d4af37] rounded-lg flex items-center justify-center">
-                <GraduationCap className="w-6 h-6 text-[#1a5f3f]" />
-              </div>
-              <span className="text-xl font-medium text-[#d4af37]">LegalAcademy</span>
+              <Link href="/" className="flex items-center space-x-3 cursor-pointer">
+                <div className="w-10 h-10 bg-[#d4af37] rounded-lg flex items-center justify-center">
+                  <GraduationCap className="w-6 h-6 text-[#1a5f3f]" />
+                </div>
+                <span className="text-xl font-medium text-[#d4af37]">LegalAcademy</span>
+              </Link>
             </motion.div>
 
             {/* Desktop Navigation */}
             <div className="hidden md:flex items-center space-x-8">
-              {["Courses", "Competitions", "Events", "Portals", "About"].map((item, index) => (
-                <motion.a
-                  key={item}
-                  href={`#${item.toLowerCase().replace(" ", "-")}`}
-                  initial={{ opacity: 0, y: -20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.2 + index * 0.1, duration: 0.6 }}
-                  className="text-white hover:text-[#d4af37] transition-colors duration-300 font-medium"
-                >
-                  {item}
-                </motion.a>
-              ))}
+              {["Courses", "Competitions", "Events", "Portals", "About"].map((item, index) => {
+                if (item === "Courses") {
+                  return (
+                    <motion.div
+                      key={item}
+                      initial={{ opacity: 0, y: -20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: 0.2 + index * 0.1, duration: 0.6 }}
+                    >
+                      <Link href="/courses" className="text-white hover:text-[#d4af37] transition-colors duration-300 font-medium">
+                        Courses
+                      </Link>
+                    </motion.div>
+                  )
+                } else if (item === "Events") {
+                  return (
+                    <motion.div
+                      key={item}
+                      initial={{ opacity: 0, y: -20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: 0.2 + index * 0.1, duration: 0.6 }}
+                    >
+                      <Link href="/events" className="text-white hover:text-[#d4af37] transition-colors duration-300 font-medium">
+                        Events
+                      </Link>
+                    </motion.div>
+                  )
+                } else if (item === "Portals") {
+                  return (
+                    <motion.div
+                      key={item}
+                      initial={{ opacity: 0, y: -20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: 0.2 + index * 0.1, duration: 0.6 }}
+                    >
+                      <Link href="/portals" className="text-white hover:text-[#d4af37] transition-colors duration-300 font-medium">
+                        Portals
+                      </Link>
+                    </motion.div>
+                  )
+                } else {
+                  return (
+                    <motion.a
+                      key={item}
+                      href={`#${item.toLowerCase().replace(" ", "-")}`}
+                      initial={{ opacity: 0, y: -20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: 0.2 + index * 0.1, duration: 0.6 }}
+                      className="text-white hover:text-[#d4af37] transition-colors duration-300 font-medium"
+                    >
+                      {item}
+                    </motion.a>
+                  )
+                }
+              })}
             </div>
 
             {/* CTA Button */}
@@ -304,14 +349,43 @@ export default function LegalEducationWebsite() {
         >
           <div className="px-4 sm:px-6 py-4 space-y-4">
             {["Courses", "Competitions", "Events", "Portals", "About"].map((item) => (
-              <a
-                key={item}
-                href={`#${item.toLowerCase().replace(" ", "-")}`}
-                className="block text-white hover:text-[#d4af37] transition-colors duration-300"
-                onClick={() => setIsMenuOpen(false)}
-              >
-                {item}
-              </a>
+              item === "Courses" ? (
+                <Link
+                  key={item}
+                  href="/courses"
+                  className="block text-white hover:text-[#d4af37] transition-colors duration-300"
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  Courses
+                </Link>
+              ) : item === "Events" ? (
+                <Link
+                  key={item}
+                  href="/events"
+                  className="block text-white hover:text-[#d4af37] transition-colors duration-300"
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  Events
+                </Link>
+              ) : item === "Portals" ? (
+                <Link
+                  key={item}
+                  href="/portals"
+                  className="block text-white hover:text-[#d4af37] transition-colors duration-300"
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  Portals
+                </Link>
+              ) : (
+                <a
+                  key={item}
+                  href={`#${item.toLowerCase().replace(" ", "-")}`}
+                  className="block text-white hover:text-[#d4af37] transition-colors duration-300"
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  {item}
+                </a>
+              )
             ))}
             <Button className="w-full bg-[#d4af37] text-[#1a5f3f] hover:bg-[#d4af37]/90 font-medium">
               Register Now
@@ -1147,14 +1221,16 @@ export default function LegalEducationWebsite() {
               {/* Social Media Icons */}
               <div className="flex space-x-3 sm:space-x-4">
                 {[
-                  { icon: Facebook, name: "Facebook", href: "#" },
-                  { icon: Twitter, name: "Twitter", href: "#" },
-                  { icon: Youtube, name: "YouTube", href: "#" },
-                  { icon: Linkedin, name: "LinkedIn", href: "#" },
+                  { icon: Facebook, name: "Facebook", href: "https://facebook.com" },
+                  { icon: Twitter, name: "Twitter", href: "https://twitter.com" },
+                  { icon: Youtube, name: "YouTube", href: "https://youtube.com" },
+                  { icon: Linkedin, name: "LinkedIn", href: "https://linkedin.com" },
                 ].map((social) => (
                   <motion.a
                     key={social.name}
                     href={social.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
                     whileHover={{ scale: 1.1 }}
                     whileTap={{ scale: 0.95 }}
                     className="w-10 h-10 bg-white/10 rounded-lg flex items-center justify-center hover:bg-[#d4af37] hover:text-[#1a5f3f] transition-all duration-300"
@@ -1177,14 +1253,18 @@ export default function LegalEducationWebsite() {
               <div className="space-y-4">
                 <h4 className="text-lg font-medium text-white mb-4">Main Pages</h4>
                 <div className="space-y-3">
-                  {["Home", "Competitions", "Courses", "Events", "About"].map((link) => (
-                    <a
-                      key={link}
-                      href={`#${link.toLowerCase()}`}
+                  {[{ name: "Home", href: "/" },
+                    { name: "Competitions", href: "/competitions" },
+                    { name: "Courses", href: "/courses" },
+                    { name: "Events", href: "/events" },
+                    { name: "About", href: "/about" }].map((item) => (
+                    <Link
+                      key={item.name}
+                      href={item.href}
                       className="block text-white/70 hover:text-[#d4af37] transition-colors duration-300"
                     >
-                      {link}
-                    </a>
+                      {item.name}
+                    </Link>
                   ))}
                 </div>
               </div>
@@ -1193,17 +1273,19 @@ export default function LegalEducationWebsite() {
               <div className="space-y-4">
                 <h4 className="text-lg font-medium text-white mb-4">Portals</h4>
                 <div className="space-y-3">
-                  {["Team Portal", "Judge Portal", "Admin Panel", "Competition Portal", "Events Calendar"].map(
-                    (link) => (
-                      <a
-                        key={link}
-                        href="#"
-                        className="block text-white/70 hover:text-[#d4af37] transition-colors duration-300"
-                      >
-                        {link}
-                      </a>
-                    ),
-                  )}
+                  {[{ name: "Team Portal", href: "/portals/team" },
+                    { name: "Judge Portal", href: "/portals/judge" },
+                    { name: "Admin Panel", href: "/admin-login" },
+                    { name: "Competition Portal", href: "/portals/competition" },
+                    { name: "Events Calendar", href: "/portals/events-calendar" }].map((item) => (
+                    <Link
+                      key={item.name}
+                      href={item.href}
+                      className="block text-white/70 hover:text-[#d4af37] transition-colors duration-300"
+                    >
+                      {item.name}
+                    </Link>
+                  ))}
                 </div>
               </div>
 
@@ -1211,20 +1293,18 @@ export default function LegalEducationWebsite() {
               <div className="space-y-4">
                 <h4 className="text-lg font-medium text-white mb-4">Services</h4>
                 <div className="space-y-3">
-                  {[
-                    "Moot Court Training",
-                    "Legal Courses",
-                    "Competition Management",
-                    "Memorial Review",
-                    "Expert Mentoring",
-                  ].map((link) => (
-                    <a
-                      key={link}
-                      href="#"
+                  {[{ name: "Moot Court Training", href: "/courses/moot-court-training" },
+                    { name: "Legal Courses", href: "/courses" },
+                    { name: "Competition Management", href: "/courses/competition-management" },
+                    { name: "Memorial Review", href: "/courses/memorial-review" },
+                    { name: "Expert Mentoring", href: "/courses/expert-mentoring" }].map((item) => (
+                    <Link
+                      key={item.name}
+                      href={item.href}
                       className="block text-white/70 hover:text-[#d4af37] transition-colors duration-300"
                     >
-                      {link}
-                    </a>
+                      {item.name}
+                    </Link>
                   ))}
                 </div>
               </div>

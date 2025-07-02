@@ -17,13 +17,29 @@ import {
   UserCheck,
   FileText,
   MapPin,
+  LogOut,
 } from "lucide-react"
 import { Button } from "@/components/ui/button"
-import { useState } from "react"
+import { useState, useEffect } from "react"
+import { useRouter } from "next/navigation"
 
 export default function AdminPortalPage() {
   const [activeTab, setActiveTab] = useState("dashboard")
   const [selectedCompetition, setSelectedCompetition] = useState("all")
+  const router = useRouter()
+
+  // Check authentication on component mount
+  useEffect(() => {
+    const adminToken = localStorage.getItem("adminToken")
+    if (!adminToken) {
+      router.push("/admin-login")
+    }
+  }, [router])
+
+  const handleLogout = () => {
+    localStorage.removeItem("adminToken")
+    router.push("/admin-login")
+  }
 
   // Mock data - in real app, this would come from API
   const adminData = {
@@ -225,6 +241,14 @@ export default function AdminPortalPage() {
               >
                 <Download className="w-4 h-4 mr-2" />
                 Export Data
+              </Button>
+              <Button
+                onClick={handleLogout}
+                variant="outline"
+                className="border-white text-white hover:bg-red-600 hover:border-red-600 bg-transparent"
+              >
+                <LogOut className="w-4 h-4 mr-2" />
+                Logout
               </Button>
             </div>
           </div>

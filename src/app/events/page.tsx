@@ -16,10 +16,12 @@ import {
 } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { useState } from "react"
+import CalendarView from "@/components/CalendarView"
 
 export default function EventsPage() {
   const [activeFilter, setActiveFilter] = useState("all")
   const [searchTerm, setSearchTerm] = useState("")
+  const [showCalendar, setShowCalendar] = useState(false)
 
   const events = [
     {
@@ -215,130 +217,153 @@ export default function EventsPage() {
       {/* Events Grid */}
       <div className="py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-20">
-          {filteredEvents.length === 0 ? (
-            <div className="text-center py-16">
-              <Calendar className="w-16 h-16 text-gray-400 mx-auto mb-4" />
-              <h3 className="text-xl font-semibold text-gray-800 mb-2">No events found</h3>
-              <p className="text-gray-600">Try adjusting your search or filter criteria.</p>
-            </div>
+          <div className="flex justify-end mb-8">
+            <Button
+              variant={showCalendar ? "outline" : "default"}
+              className={showCalendar ? "border-[#1a5f3f] text-[#1a5f3f] hover:bg-[#1a5f3f] hover:text-white bg-transparent" : "bg-[#1a5f3f] text-white hover:bg-[#1a5f3f]/90"}
+              onClick={() => setShowCalendar((v) => !v)}
+            >
+              {showCalendar ? "Show List View" : "Show Calendar View"}
+            </Button>
+          </div>
+          {showCalendar ? (
+            <motion.div
+              key="calendar"
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: 30 }}
+              transition={{ duration: 0.5 }}
+            >
+              <CalendarView events={events} />
+            </motion.div>
           ) : (
-            <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-8">
-              {filteredEvents.map((event, index) => {
-                const TypeIcon = getTypeIcon(event.type)
-                return (
-                  <motion.div
-                    key={event.id}
-                    initial={{ opacity: 0, y: 30 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ delay: index * 0.1, duration: 0.6 }}
-                    viewport={{ once: true }}
-                    whileHover={{ y: -5, scale: 1.02 }}
-                    className="bg-white border border-gray-200 rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300"
-                  >
-                    {/* Header */}
-                    <div className="p-6 border-b border-gray-100">
-                      <div className="flex items-start justify-between mb-4">
-                        <div className="flex items-center">
-                          <div className="w-10 h-10 bg-[#1a5f3f]/10 rounded-lg flex items-center justify-center mr-3">
-                            <TypeIcon className="w-5 h-5 text-[#1a5f3f]" />
+            <>
+              {filteredEvents.length === 0 ? (
+                <div className="text-center py-16">
+                  <Calendar className="w-16 h-16 text-gray-400 mx-auto mb-4" />
+                  <h3 className="text-xl font-semibold text-gray-800 mb-2">No events found</h3>
+                  <p className="text-gray-600">Try adjusting your search or filter criteria.</p>
+                </div>
+              ) : (
+                <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-8">
+                  {filteredEvents.map((event, index) => {
+                    const TypeIcon = getTypeIcon(event.type)
+                    return (
+                      <motion.div
+                        key={event.id}
+                        initial={{ opacity: 0, y: 30 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        transition={{ delay: index * 0.1, duration: 0.6 }}
+                        viewport={{ once: true }}
+                        whileHover={{ y: -5, scale: 1.02 }}
+                        className="bg-white border border-gray-200 rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300"
+                      >
+                        {/* Header */}
+                        <div className="p-6 border-b border-gray-100">
+                          <div className="flex items-start justify-between mb-4">
+                            <div className="flex items-center">
+                              <div className="w-10 h-10 bg-[#1a5f3f]/10 rounded-lg flex items-center justify-center mr-3">
+                                <TypeIcon className="w-5 h-5 text-[#1a5f3f]" />
+                              </div>
+                              <div>
+                                <span
+                                  className={`px-2 py-1 rounded-full text-xs font-medium ${getStatusColor(event.status)}`}
+                                >
+                                  {event.status.charAt(0).toUpperCase() + event.status.slice(1)}
+                                </span>
+                              </div>
+                            </div>
+                            {event.status === "upcoming" && (
+                              <Button size="sm" variant="outline" className="text-xs bg-transparent">
+                                <Bell className="w-3 h-3 mr-1" />
+                                Remind Me
+                              </Button>
+                            )}
                           </div>
-                          <div>
-                            <span
-                              className={`px-2 py-1 rounded-full text-xs font-medium ${getStatusColor(event.status)}`}
-                            >
-                              {event.status.charAt(0).toUpperCase() + event.status.slice(1)}
+
+                          <h3 className="text-xl font-semibold mb-2 text-gray-800">{event.title}</h3>
+                          <p className="text-gray-600 text-sm leading-relaxed">{event.description}</p>
+                        </div>
+
+                        {/* Details */}
+                        <div className="p-6 space-y-3">
+                          <div className="flex items-center text-sm text-gray-600">
+                            <Calendar className="w-4 h-4 mr-3 text-[#1a5f3f]" />
+                            <span>
+                              {new Date(event.date).toLocaleDateString("en-IN", {
+                                day: "numeric",
+                                month: "long",
+                                year: "numeric",
+                              })}
+                              {event.endDate &&
+                                event.endDate !== event.date &&
+                                ` - ${new Date(event.endDate).toLocaleDateString("en-IN", {
+                                  day: "numeric",
+                                  month: "long",
+                                })}`}
                             </span>
                           </div>
+
+                          <div className="flex items-center text-sm text-gray-600">
+                            <Clock className="w-4 h-4 mr-3 text-[#1a5f3f]" />
+                            <span>{event.time}</span>
+                          </div>
+
+                          <div className="flex items-center text-sm text-gray-600">
+                            <MapPin className="w-4 h-4 mr-3 text-[#1a5f3f]" />
+                            <span>{event.location}</span>
+                          </div>
+
+                          <div className="flex items-center text-sm text-gray-600">
+                            <Users className="w-4 h-4 mr-3 text-[#1a5f3f]" />
+                            <span>{event.participants} Participants</span>
+                          </div>
+
+                          {event.prize && (
+                            <div className="flex items-center text-sm text-gray-600">
+                              <Award className="w-4 h-4 mr-3 text-[#1a5f3f]" />
+                              <span>Prize: {event.prize}</span>
+                            </div>
+                          )}
+
+                          {event.registrationDeadline && event.status === "upcoming" && (
+                            <div className="flex items-center text-sm text-red-600">
+                              <Clock className="w-4 h-4 mr-3 text-red-500" />
+                              <span>
+                                Registration Deadline: {new Date(event.registrationDeadline).toLocaleDateString("en-IN")}
+                              </span>
+                            </div>
+                          )}
                         </div>
-                        {event.status === "upcoming" && (
-                          <Button size="sm" variant="outline" className="text-xs bg-transparent">
-                            <Bell className="w-3 h-3 mr-1" />
-                            Remind Me
-                          </Button>
-                        )}
-                      </div>
 
-                      <h3 className="text-xl font-semibold mb-2 text-gray-800">{event.title}</h3>
-                      <p className="text-gray-600 text-sm leading-relaxed">{event.description}</p>
-                    </div>
-
-                    {/* Details */}
-                    <div className="p-6 space-y-3">
-                      <div className="flex items-center text-sm text-gray-600">
-                        <Calendar className="w-4 h-4 mr-3 text-[#1a5f3f]" />
-                        <span>
-                          {new Date(event.date).toLocaleDateString("en-IN", {
-                            day: "numeric",
-                            month: "long",
-                            year: "numeric",
-                          })}
-                          {event.endDate &&
-                            event.endDate !== event.date &&
-                            ` - ${new Date(event.endDate).toLocaleDateString("en-IN", {
-                              day: "numeric",
-                              month: "long",
-                            })}`}
-                        </span>
-                      </div>
-
-                      <div className="flex items-center text-sm text-gray-600">
-                        <Clock className="w-4 h-4 mr-3 text-[#1a5f3f]" />
-                        <span>{event.time}</span>
-                      </div>
-
-                      <div className="flex items-center text-sm text-gray-600">
-                        <MapPin className="w-4 h-4 mr-3 text-[#1a5f3f]" />
-                        <span>{event.location}</span>
-                      </div>
-
-                      <div className="flex items-center text-sm text-gray-600">
-                        <Users className="w-4 h-4 mr-3 text-[#1a5f3f]" />
-                        <span>{event.participants} Participants</span>
-                      </div>
-
-                      {event.prize && (
-                        <div className="flex items-center text-sm text-gray-600">
-                          <Award className="w-4 h-4 mr-3 text-[#1a5f3f]" />
-                          <span>Prize: {event.prize}</span>
+                        {/* Actions */}
+                        <div className="p-6 pt-0">
+                          <div className="flex gap-3">
+                            <Button
+                              className="flex-1 bg-[#1a5f3f] text-white hover:bg-[#1a5f3f]/90 transition-all duration-300"
+                              disabled={event.status === "past"}
+                            >
+                              {event.status === "past"
+                                ? "View Details"
+                                : event.type === "competition"
+                                  ? "Register Now"
+                                  : "Join Event"}
+                            </Button>
+                            <Button
+                              variant="outline"
+                              size="sm"
+                              className="border-[#1a5f3f] text-[#1a5f3f] hover:bg-[#1a5f3f] hover:text-white bg-transparent"
+                            >
+                              <ExternalLink className="w-4 h-4" />
+                            </Button>
+                          </div>
                         </div>
-                      )}
-
-                      {event.registrationDeadline && event.status === "upcoming" && (
-                        <div className="flex items-center text-sm text-red-600">
-                          <Clock className="w-4 h-4 mr-3 text-red-500" />
-                          <span>
-                            Registration Deadline: {new Date(event.registrationDeadline).toLocaleDateString("en-IN")}
-                          </span>
-                        </div>
-                      )}
-                    </div>
-
-                    {/* Actions */}
-                    <div className="p-6 pt-0">
-                      <div className="flex gap-3">
-                        <Button
-                          className="flex-1 bg-[#1a5f3f] text-white hover:bg-[#1a5f3f]/90 transition-all duration-300"
-                          disabled={event.status === "past"}
-                        >
-                          {event.status === "past"
-                            ? "View Details"
-                            : event.type === "competition"
-                              ? "Register Now"
-                              : "Join Event"}
-                        </Button>
-                        <Button
-                          variant="outline"
-                          size="sm"
-                          className="border-[#1a5f3f] text-[#1a5f3f] hover:bg-[#1a5f3f] hover:text-white bg-transparent"
-                        >
-                          <ExternalLink className="w-4 h-4" />
-                        </Button>
-                      </div>
-                    </div>
-                  </motion.div>
-                )
-              })}
-            </div>
+                      </motion.div>
+                    )
+                  })}
+                </div>
+              )}
+            </>
           )}
         </div>
       </div>
