@@ -25,14 +25,8 @@ A centralized web platform to host and manage **Moot Court**, **ADR simulations*
 git clone https://github.com/imthesahil/Law-Website.git
 cd Law-Website
 2. Install dependencies
-bash
-Copy
-Edit
 npm install
 3. Run the dev server
-bash
-Copy
-Edit
 npm run dev
 Visit http://localhost:3000 in your browser.
 
