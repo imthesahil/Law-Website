@@ -225,7 +225,7 @@ export default function AdminLoginPage() {
           className="text-center mt-6"
         >
           <p className="text-white/60 text-sm">
-            © 2025 LegalAcademy. All rights reserved.
+            © 2025 Live Legal. All rights reserved.
           </p>
         </motion.div>
       </motion.div>

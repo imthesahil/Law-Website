@@ -15,11 +15,11 @@ export default function AboutPage() {
         >
           <div className="inline-flex items-center space-x-2 bg-[#d4af37]/20 px-4 py-2 rounded-full border border-[#d4af37]/30 mb-4">
             <GraduationCap className="w-5 h-5 text-[#d4af37]" />
-            <span className="text-sm text-[#d4af37] font-medium">About LegalAcademy</span>
+            <span className="text-sm text-[#d4af37] font-medium">About Live Legal</span>
           </div>
           <h1 className="text-4xl sm:text-5xl font-light mb-4 text-[#1a5f3f]">Leading the way in legal education</h1>
           <p className="text-gray-600 text-lg max-w-2xl mx-auto leading-relaxed">
-            LegalAcademy bridges the gap between theory and practice, empowering the next generation of legal professionals with hands-on training, expert mentorship, and real-world experience.
+            Live Legal bridges the gap between theory and practice, empowering the next generation of legal professionals with hands-on training, expert mentorship, and real-world experience.
           </p>
         </motion.div>
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-8">

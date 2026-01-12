@@ -10,9 +10,9 @@ const inter = Inter({
 })
 
 export const metadata: Metadata = {
-  title: "LegalPro - Expert Legal Solutions You Can Trust",
+  title: "Live Legal - Legal support, without the legal stress",
   description:
-    "Navigate complex legal challenges with confidence. Our experienced team delivers personalized strategies and unwavering advocacy for your most important matters.",
+    "Clear. Simple. Legally Sound. Practical, business-ready legal support for founders, growing teams, and institutions.",
 }
 
 export default function RootLayout({

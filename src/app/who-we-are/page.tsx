@@ -1,0 +1,322 @@
+"use client"
+
+import { motion } from "framer-motion"
+import {
+  Menu,
+  X,
+  GraduationCap,
+  Target,
+  ArrowRight,
+} from "lucide-react"
+import { Button } from "@/components/ui/button"
+import { useState } from "react"
+import Link from "next/link"
+
+export default function WhoWeArePage() {
+  const [isMenuOpen, setIsMenuOpen] = useState(false)
+
+  const logoVariants = {
+    hidden: { opacity: 0, scale: 0.8 },
+    visible: {
+      opacity: 1,
+      scale: 1,
+      transition: {
+        duration: 1,
+        ease: "easeOut",
+      },
+    },
+  }
+
+  return (
+    <div className="min-h-screen overflow-hidden">
+      {/* Navigation */}
+      <motion.nav
+        initial={{ y: -100, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        transition={{ duration: 0.8, ease: "easeOut" }}
+        className="fixed top-0 left-0 right-0 z-50 bg-[#1a5f3f]/95 backdrop-blur-sm border-b border-white/10"
+      >
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-20">
+          <div className="flex items-center justify-between h-16 sm:h-20">
+            {/* Logo */}
+            <motion.div
+              variants={logoVariants}
+              initial="hidden"
+              animate="visible"
+              className="flex items-center space-x-3"
+            >
+              <Link href="/" className="flex items-center space-x-3 cursor-pointer">
+                <div className="w-10 h-10 bg-[#d4af37] rounded-lg flex items-center justify-center">
+                  <GraduationCap className="w-6 h-6 text-[#1a5f3f]" />
+                </div>
+                <span className="text-xl font-medium text-[#d4af37]">Live Legal</span>
+              </Link>
+            </motion.div>
+
+            {/* Desktop Navigation */}
+            <div className="hidden md:flex items-center space-x-8">
+              {["Who we are?", "Services", "Clients", "UNSAID", "FAQ", "Contact us", "Brochure"].map((item, index) => {
+                if (item === "Who we are?") {
+                  return (
+                    <motion.div
+                      key={item}
+                      initial={{ opacity: 0, y: -20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: 0.2 + index * 0.1, duration: 0.6 }}
+                    >
+                      <Link href="/who-we-are" className="text-white hover:text-[#d4af37] transition-colors duration-300 font-medium">
+                        Who we are?
+                      </Link>
+                    </motion.div>
+                  )
+                } else if (item === "Services") {
+                  return (
+                    <motion.div
+                      key={item}
+                      initial={{ opacity: 0, y: -20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: 0.2 + index * 0.1, duration: 0.6 }}
+                    >
+                      <Link href="/services" className="text-white hover:text-[#d4af37] transition-colors duration-300 font-medium">
+                        Services
+                      </Link>
+                    </motion.div>
+                  )
+                } else if (item === "Clients") {
+                  return (
+                    <motion.div
+                      key={item}
+                      initial={{ opacity: 0, y: -20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: 0.2 + index * 0.1, duration: 0.6 }}
+                    >
+                      <Link href="/clients" className="text-white hover:text-[#d4af37] transition-colors duration-300 font-medium">
+                        Clients
+                      </Link>
+                    </motion.div>
+                  )
+                } else if (item === "UNSAID") {
+                  return (
+                    <motion.div
+                      key={item}
+                      initial={{ opacity: 0, y: -20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: 0.2 + index * 0.1, duration: 0.6 }}
+                    >
+                      <Link href="/unsaid" target="_blank" rel="noopener noreferrer" className="text-white hover:text-[#d4af37] transition-colors duration-300 font-medium">
+                        UNSAID
+                      </Link>
+                    </motion.div>
+                  )
+                } else if (item === "FAQ") {
+                  return (
+                    <motion.div
+                      key={item}
+                      initial={{ opacity: 0, y: -20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: 0.2 + index * 0.1, duration: 0.6 }}
+                    >
+                      <Link href="/faq" className="text-white hover:text-[#d4af37] transition-colors duration-300 font-medium">
+                        FAQ
+                      </Link>
+                    </motion.div>
+                  )
+                } else if (item === "Contact us") {
+                  return (
+                    <motion.div
+                      key={item}
+                      initial={{ opacity: 0, y: -20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: 0.2 + index * 0.1, duration: 0.6 }}
+                    >
+                      <Link href="/contact-us" className="text-white hover:text-[#d4af37] transition-colors duration-300 font-medium">
+                        Contact us
+                      </Link>
+                    </motion.div>
+                  )
+                } else {
+                  return (
+                    <motion.div
+                      key={item}
+                      initial={{ opacity: 0, y: -20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: 0.2 + index * 0.1, duration: 0.6 }}
+                    >
+                      <Link href="/brochure" className="text-white hover:text-[#d4af37] transition-colors duration-300 font-medium">
+                        Brochure
+                      </Link>
+                    </motion.div>
+                  )
+                }
+              })}
+            </div>
+
+            {/* CTA Button */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ delay: 0.6, duration: 0.6 }}
+              className="hidden md:block"
+            >
+              <Button
+                className="bg-[#d4af37] text-[#1a5f3f] hover:bg-[#d4af37]/90 font-medium px-6 py-2 rounded-lg transition-all duration-300 hover:scale-105"
+                asChild
+              >
+                <Link href="/contact-us">Book a consultation</Link>
+              </Button>
+            </motion.div>
+
+            {/* Mobile Menu Button */}
+            <button onClick={() => setIsMenuOpen(!isMenuOpen)} className="md:hidden p-2">
+              {isMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+            </button>
+          </div>
+        </div>
+
+        {/* Mobile Menu */}
+        <motion.div
+          initial={false}
+          animate={{ height: isMenuOpen ? "auto" : 0, opacity: isMenuOpen ? 1 : 0 }}
+          transition={{ duration: 0.3 }}
+          className="md:hidden overflow-hidden bg-[#1a5f3f] border-t border-white/10"
+        >
+          <div className="px-4 sm:px-6 py-4 space-y-4">
+            <Link
+              href="/who-we-are"
+              className="block text-white hover:text-[#d4af37] transition-colors duration-300"
+              onClick={() => setIsMenuOpen(false)}
+            >
+              Who we are?
+            </Link>
+            <Link
+              href="/services"
+              className="block text-white hover:text-[#d4af37] transition-colors duration-300"
+              onClick={() => setIsMenuOpen(false)}
+            >
+              Services
+            </Link>
+            <Link
+              href="/clients"
+              className="block text-white hover:text-[#d4af37] transition-colors duration-300"
+              onClick={() => setIsMenuOpen(false)}
+            >
+              Clients
+            </Link>
+            <Link
+              href="/unsaid"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="block text-white hover:text-[#d4af37] transition-colors duration-300"
+              onClick={() => setIsMenuOpen(false)}
+            >
+              UNSAID
+            </Link>
+            <Link
+              href="/faq"
+              className="block text-white hover:text-[#d4af37] transition-colors duration-300"
+              onClick={() => setIsMenuOpen(false)}
+            >
+              FAQ
+            </Link>
+            <Link
+              href="/contact-us"
+              className="block text-white hover:text-[#d4af37] transition-colors duration-300"
+              onClick={() => setIsMenuOpen(false)}
+            >
+              Contact us
+            </Link>
+            <Link
+              href="/brochure"
+              className="block text-white hover:text-[#d4af37] transition-colors duration-300"
+              onClick={() => setIsMenuOpen(false)}
+            >
+              Brochure
+            </Link>
+            <Button className="w-full bg-[#d4af37] text-[#1a5f3f] hover:bg-[#d4af37]/90 font-medium" asChild>
+              <Link href="/contact-us" onClick={() => setIsMenuOpen(false)}>Book a consultation</Link>
+            </Button>
+          </div>
+        </motion.div>
+      </motion.nav>
+
+      {/* Main Content */}
+      <div className="min-h-screen bg-gradient-to-br from-[#f8fafc] to-[#e6f4ef] py-20 pt-32">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            className="text-center mb-16"
+          >
+            <div className="inline-flex items-center space-x-2 bg-[#d4af37]/20 px-4 py-2 rounded-full border border-[#d4af37]/30 mb-4">
+              <Target className="w-5 h-5 text-[#d4af37]" />
+              <span className="text-sm text-[#d4af37] font-medium">About Live Legal</span>
+            </div>
+            <h1 className="text-4xl sm:text-5xl font-light mb-4 text-[#1a5f3f]">Who we are?</h1>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.2, duration: 0.8 }}
+            className="space-y-8 mb-16"
+          >
+            <p className="text-gray-700 text-lg leading-relaxed">
+              LiveLegal offers practical, business-ready legal support designed for founders, early-stage teams, and growing companies. We focus on creating clear, reliable, and tailored legal frameworks that help businesses operate smoothly and with confidence.
+            </p>
+            <p className="text-gray-700 text-lg leading-relaxed">
+              Beyond core legal services, we also provide legal hiring support, helping organizations and law firms find the right legal talent, and moot court support, assisting students and institutions with structured guidance, drafting, and preparation.
+            </p>
+            <p className="text-gray-700 text-lg leading-relaxed">
+              Our approach is simple: we take time to understand your needs, deliver precise and dependable work, and make legal support easy to access and stress-free.
+            </p>
+          </motion.div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.4, duration: 0.8 }}
+              className="bg-white rounded-2xl p-8 shadow-lg"
+            >
+              <h2 className="text-2xl font-medium text-[#1a5f3f] mb-4">Company Vision</h2>
+              <p className="text-gray-700 leading-relaxed">
+                To become the trusted legal partner for growing companies by making high-quality legal frameworks accessible, streamlined, and simple to use.
+              </p>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.6, duration: 0.8 }}
+              className="bg-white rounded-2xl p-8 shadow-lg"
+            >
+              <h2 className="text-2xl font-medium text-[#1a5f3f] mb-4">Company Mission</h2>
+              <p className="text-gray-700 leading-relaxed">
+                To provide clear, dependable, and efficient legal support that helps businesses stay compliant, protected, and confident in their day-to-day operations.
+              </p>
+            </motion.div>
+          </div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.8, duration: 0.6 }}
+            className="text-center mt-12"
+          >
+            <Button
+              size="lg"
+              className="bg-[#d4af37] text-[#1a5f3f] hover:bg-[#d4af37]/90 font-medium px-8 py-4 text-lg rounded-lg transition-all duration-300 hover:scale-105"
+              asChild
+            >
+              <Link href="/contact-us">
+                Get in Touch
+                <ArrowRight className="ml-2 w-5 h-5" />
+              </Link>
+            </Button>
+          </motion.div>
+        </div>
+      </div>
+    </div>
+  )
+}
