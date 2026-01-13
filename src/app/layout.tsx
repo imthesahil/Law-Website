@@ -13,6 +13,9 @@ export const metadata: Metadata = {
   title: "Live Legal - Legal support, without the legal stress",
   description:
     "Clear. Simple. Legally Sound. Practical, business-ready legal support for founders, growing teams, and institutions.",
+  icons: {
+    icon: "/images/live-legal-logo.png",
+  },
 }
 
 export default function RootLayout({

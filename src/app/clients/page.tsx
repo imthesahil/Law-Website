@@ -4,13 +4,13 @@ import { motion } from "framer-motion"
 import {
   Menu,
   X,
-  GraduationCap,
   Users,
   ArrowRight,
 } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { useState } from "react"
 import Link from "next/link"
+import Image from "next/image"
 
 export default function ClientsPage() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
@@ -44,11 +44,22 @@ export default function ClientsPage() {
               animate="visible"
               className="flex items-center space-x-3"
             >
-              <Link href="/" className="flex items-center space-x-3 cursor-pointer">
-                <div className="w-10 h-10 bg-[#d4af37] rounded-lg flex items-center justify-center">
-                  <GraduationCap className="w-6 h-6 text-[#1a5f3f]" />
+              <Link href="/" className="flex items-center gap-3 cursor-pointer">
+                {/* Logo Icon */}
+                <div className="relative w-10 h-10 sm:w-12 sm:h-12 flex-shrink-0">
+                  <Image
+                    src="/images/live-legal-logo.png"
+                    alt="Live Legal Logo"
+                    fill
+                    className="object-contain"
+                    priority
+                  />
                 </div>
-                <span className="text-xl font-medium text-[#d4af37]">Live Legal</span>
+                {/* Logo Text */}
+                <div className="flex flex-col leading-tight">
+                  <span className="text-white text-xl font-semibold">Live</span>
+                  <span className="text-white text-xl font-semibold">Legal</span>
+                </div>
               </Link>
             </motion.div>
 

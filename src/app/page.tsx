@@ -9,7 +9,6 @@ import {
   ChevronRight,
   Menu,
   X,
-  GraduationCap,
   Trophy,
   Star,
   Building,
@@ -19,10 +18,8 @@ import {
   Target,
   ChevronDown,
   ArrowRight,
-  Facebook,
-  Twitter,
-  Youtube,
   Linkedin,
+  Instagram,
   Calendar,
   MapPin,
   DollarSign,
@@ -251,11 +248,22 @@ export default function LegalEducationWebsite() {
               animate="visible"
               className="flex items-center space-x-3"
             >
-              <Link href="/" className="flex items-center space-x-3 cursor-pointer">
-                <div className="w-10 h-10 bg-[#d4af37] rounded-lg flex items-center justify-center">
-                  <GraduationCap className="w-6 h-6 text-[#1a5f3f]" />
+              <Link href="/" className="flex items-center gap-3 cursor-pointer">
+                {/* Logo Icon */}
+                <div className="relative w-10 h-10 sm:w-12 sm:h-12 flex-shrink-0">
+                  <Image
+                    src="/images/live-legal-logo.png"
+                    alt="Live Legal Logo"
+                    fill
+                    className="object-contain"
+                    priority
+                  />
                 </div>
-                <span className="text-xl font-medium text-[#d4af37]">Live Legal</span>
+                {/* Logo Text */}
+                <div className="flex flex-col leading-tight">
+                  <span className="text-white text-xl font-semibold">Live</span>
+                  <span className="text-white text-xl font-semibold">Legal</span>
+                </div>
               </Link>
             </motion.div>
 
@@ -628,11 +636,21 @@ export default function LegalEducationWebsite() {
               className="space-y-6"
             >
               {/* Logo */}
-              <div className="flex items-center space-x-3">
-                <div className="w-10 h-10 bg-[#d4af37] rounded-lg flex items-center justify-center">
-                  <GraduationCap className="w-6 h-6 text-[#1a5f3f]" />
+              <div className="flex items-center gap-3">
+                {/* Logo Icon */}
+                <div className="relative w-10 h-10 sm:w-12 sm:h-12 flex-shrink-0">
+                  <Image
+                    src="/images/live-legal-logo.png"
+                    alt="Live Legal Logo"
+                    fill
+                    className="object-contain"
+                  />
                 </div>
-                <span className="text-xl font-medium text-[#d4af37]">Live Legal</span>
+                {/* Logo Text */}
+                <div className="flex flex-col leading-tight">
+                  <span className="text-white text-xl font-semibold">Live</span>
+                  <span className="text-white text-xl font-semibold">Legal</span>
+                </div>
               </div>
 
               {/* Description */}
@@ -642,24 +660,28 @@ export default function LegalEducationWebsite() {
 
               {/* Social Media Icons */}
               <div className="flex space-x-3 sm:space-x-4">
-                {[
-                  { icon: Facebook, name: "Facebook", href: "https://facebook.com" },
-                  { icon: Twitter, name: "Twitter", href: "https://twitter.com" },
-                  { icon: Youtube, name: "YouTube", href: "https://youtube.com" },
-                  { icon: Linkedin, name: "LinkedIn", href: "https://linkedin.com" },
-                ].map((social) => (
-                  <motion.a
-                    key={social.name}
-                    href={social.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    whileHover={{ scale: 1.1 }}
-                    whileTap={{ scale: 0.95 }}
-                    className="w-10 h-10 bg-white/10 rounded-lg flex items-center justify-center hover:bg-[#d4af37] hover:text-[#1a5f3f] transition-all duration-300"
-                  >
-                    <social.icon className="w-5 h-5" />
-                  </motion.a>
-                ))}
+                <motion.a
+                  href="https://www.linkedin.com/company/live-legal"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  whileHover={{ scale: 1.1 }}
+                  whileTap={{ scale: 0.95 }}
+                  className="w-10 h-10 bg-white/10 rounded-lg flex items-center justify-center hover:bg-[#d4af37] hover:text-[#1a5f3f] transition-all duration-300"
+                  aria-label="LinkedIn"
+                >
+                  <Linkedin className="w-5 h-5" />
+                </motion.a>
+                <motion.a
+                  href="https://www.instagram.com/livelegal_"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  whileHover={{ scale: 1.1 }}
+                  whileTap={{ scale: 0.95 }}
+                  className="w-10 h-10 bg-white/10 rounded-lg flex items-center justify-center hover:bg-[#d4af37] hover:text-[#1a5f3f] transition-all duration-300"
+                  aria-label="Instagram"
+                >
+                  <Instagram className="w-5 h-5" />
+                </motion.a>
               </div>
             </motion.div>
 
