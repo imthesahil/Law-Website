@@ -107,7 +107,7 @@ export default function FAQPage() {
     },
   ]
 
-  const navItems = ["Who we are?", "Services", "Clients", "UNSAID", "FAQ", "Contact us", "Brochure"]
+  const navItems = ["Who we are?", "Services", "Clients", "UNSAID", "FAQ", "Contact us", "Blog"]
 
   return (
     <div className="min-h-screen overflow-hidden">
@@ -154,11 +154,11 @@ export default function FAQPage() {
                   transition={{ delay: 0.2 + index * 0.1, duration: 0.6 }}
                 >
                   <Link
-                    href={`/${item.toLowerCase().replace("?", "").replace(" ", "-")}`}
+                    href={item === "Blog" ? "/blog" : `/${item.toLowerCase().replace("?", "").replace(" ", "-")}`}
                     {...(item === "UNSAID" ? { target: "_blank", rel: "noopener noreferrer" } : {})}
                     className="text-white hover:text-[#d4af37] transition-colors duration-300 font-medium"
                   >
-                    {item}
+                    {item === "Blog" ? "Blogs" : item}
                   </Link>
                 </motion.div>
               ))}
@@ -194,12 +194,12 @@ export default function FAQPage() {
             {navItems.map((item) => (
               <Link
                 key={item}
-                href={`/${item.toLowerCase().replace("?", "").replace(" ", "-")}`}
+                href={item === "Blog" ? "/blog" : `/${item.toLowerCase().replace("?", "").replace(" ", "-")}`}
                 {...(item === "UNSAID" ? { target: "_blank", rel: "noopener noreferrer" } : {})}
                 className="block text-white hover:text-[#d4af37] transition-colors duration-300"
                 onClick={() => setIsMenuOpen(false)}
               >
-                {item}
+                {item === "Blog" ? "Blogs" : item}
               </Link>
             ))}
             <Button className="w-full bg-[#d4af37] text-[#1a5f3f] hover:bg-[#d4af37]/90 font-medium" asChild>

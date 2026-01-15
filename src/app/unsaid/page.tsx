@@ -9,7 +9,6 @@ import {
   MessageSquare,
   Instagram,
   Headphones,
-  Archive,
   Users,
   BookOpen,
   ArrowRightCircle,
@@ -60,8 +59,9 @@ export default function UnsaidPage() {
 
   const unsaidNavItems = [
     { name: "About us", href: "/unsaid/about-us" },
-    { name: "The Open Room", href: "/unsaid/the-open-room" },
-    { name: "The Sunday Script", href: "/unsaid/the-sunday-script" },
+    { name: "Services", href: "/unsaid/services" },
+    { name: "Blogs", href: "/unsaid/blogs" },
+    { name: "The UNSAID", href: "/unsaid/the-unsaid" },
     { name: "Contact Us", href: "/unsaid/contact" },
   ]
 
@@ -83,7 +83,7 @@ export default function UnsaidPage() {
               animate="visible"
               className="flex items-center space-x-3"
             >
-              <Link href="/" className="flex items-center gap-3 cursor-pointer">
+              <Link href="/unsaid" className="flex items-center gap-3 cursor-pointer">
                 {/* Logo Icon */}
                 <div className="relative w-10 h-10 sm:w-12 sm:h-12 flex-shrink-0">
                   <Image
@@ -96,8 +96,8 @@ export default function UnsaidPage() {
                 </div>
                 {/* Logo Text */}
                 <div className="flex flex-col leading-tight">
-                  <span className="text-[#2d3748] text-base font-medium">Unsaid by</span>
-                  <span className="text-[#2d3748] text-xl font-semibold">Live Legal</span>
+                  <span className="text-[#2d3748] text-2xl sm:text-3xl font-bold">UNSAID</span>
+                  <span className="text-[#2d3748] text-sm sm:text-base font-medium">by Live Legal</span>
                 </div>
               </Link>
             </motion.div>
@@ -411,7 +411,7 @@ export default function UnsaidPage() {
         </div>
       </section>
 
-      {/* Section 5: The Open Room */}
+      {/* Section 5: Services */}
       <section className="py-16 bg-[#faedcd]">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.h2
@@ -421,10 +421,10 @@ export default function UnsaidPage() {
             transition={{ duration: 0.8 }}
             className="text-3xl sm:text-4xl lg:text-5xl font-bold text-[#d4a373] mb-12 text-center"
           >
-            The Open Room
+            Services
           </motion.h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
-            {/* Card 1: The Archive */}
+            {/* Card 1: Counselling Sessions */}
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -433,21 +433,21 @@ export default function UnsaidPage() {
               className="bg-[#fefae0] border-2 border-[#ccd5ae] rounded-2xl p-6 lg:p-8 hover:border-[#d4a373] hover:shadow-lg transition-all duration-300 flex flex-col"
             >
               <div className="w-12 h-12 bg-[#d4a373]/20 rounded-lg flex items-center justify-center mb-4">
-                <Archive className="w-6 h-6 text-[#d4a373]" />
+                <Headphones className="w-6 h-6 text-[#d4a373]" />
               </div>
-              <h3 className="text-xl sm:text-2xl font-bold text-[#d4a373] mb-4">The Archive (Anonymous Submissions)</h3>
+              <h3 className="text-xl sm:text-2xl font-bold text-[#d4a373] mb-4">Counselling Sessions</h3>
               <p className="text-[#2d3748] leading-relaxed mb-6 flex-grow">
-                A digital safe-deposit box for the thoughts you usually backspace. Drop your truths here anonymously—no judgment, no tracing, just the relief of letting them go.
+                Dedicated time to focus on your mental health with a qualified professional. We provide a safe environment to explore your challenges, find balance, and reclaim your peace of mind.
               </p>
               <Button
                 asChild
                 className="bg-[#d4a373] text-white hover:bg-[#b8915f] font-semibold w-full rounded-lg transition-all duration-300 hover:scale-105"
               >
-                <Link href="/unsaid/the-open-room#archive">Submit Anonymously</Link>
+                <Link href="/unsaid/services#counselling">Book a Session</Link>
               </Button>
             </motion.div>
 
-            {/* Card 2: The Circle */}
+            {/* Card 2: Community Outreach */}
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -458,19 +458,19 @@ export default function UnsaidPage() {
               <div className="w-12 h-12 bg-[#d4a373]/20 rounded-lg flex items-center justify-center mb-4">
                 <Users className="w-6 h-6 text-[#d4a373]" />
               </div>
-              <h3 className="text-xl sm:text-2xl font-bold text-[#d4a373] mb-4">The Circle (Peer Support)</h3>
+              <h3 className="text-xl sm:text-2xl font-bold text-[#d4a373] mb-4">Community Outreach</h3>
               <p className="text-[#2d3748] leading-relaxed mb-6 flex-grow">
-                Moderated spaces where the mask finally comes off. These aren't "fixing" sessions; they are quiet gatherings for those tired of performing wellness to find others who speak the same language.
+                We take the conversation beyond our platform and into the heart of the community. Whether it's a classroom or a corporate office, we host workshops designed to dismantle stigma and empower individuals with practical mental health awareness and rights education.
               </p>
               <Button
                 asChild
                 className="bg-[#d4a373] text-white hover:bg-[#b8915f] font-semibold w-full rounded-lg transition-all duration-300 hover:scale-105"
               >
-                <Link href="/unsaid/the-open-room#circle">Join The Circle</Link>
+                <Link href="/unsaid/services#outreach">Inquire About Workshops</Link>
               </Button>
             </motion.div>
 
-            {/* Card 3: Unsaid Sessions */}
+            {/* Card 3: The UNSAID */}
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -481,7 +481,7 @@ export default function UnsaidPage() {
               <div className="w-12 h-12 bg-[#d4a373]/20 rounded-lg flex items-center justify-center mb-4">
                 <BookOpen className="w-6 h-6 text-[#d4a373]" />
               </div>
-              <h3 className="text-xl sm:text-2xl font-bold text-[#d4a373] mb-4">Unsaid Sessions</h3>
+              <h3 className="text-xl sm:text-2xl font-bold text-[#d4a373] mb-4">The UNSAID</h3>
               <p className="text-[#2d3748] leading-relaxed mb-6 flex-grow">
                 Interactive workshops designed to bridge the gap between internal struggle and external advocacy. We provide the vocabulary to name your noise and the legal literacy to protect your peace.
               </p>
@@ -489,47 +489,105 @@ export default function UnsaidPage() {
                 asChild
                 className="bg-[#d4a373] text-white hover:bg-[#b8915f] font-semibold w-full rounded-lg transition-all duration-300 hover:scale-105"
               >
-                <Link href="/unsaid/the-open-room#sessions">Explore Sessions</Link>
+                <Link href="/unsaid/services#unsaid">Explore The UNSAID</Link>
               </Button>
             </motion.div>
           </div>
         </div>
       </section>
 
-      {/* Section 6: The Sunday Script */}
+      {/* Section 6: The UNSAID */}
       <section className="py-16 bg-[#e9edc9]">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <motion.h2
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+            className="text-3xl sm:text-4xl lg:text-5xl font-bold text-[#d4a373] mb-8 text-center"
+          >
+            The UNSAID
+          </motion.h2>
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            className="space-y-6 text-lg sm:text-xl leading-relaxed text-[#2d3748] mb-8"
+          >
+            <p>
+              Navigating mental health doesn't have to feel like wandering through a fog. The UNSAID is our dedicated space for the essentials—breaking down complex clinical terms into human language you can actually use.
+            </p>
+            <p>
+              Here, we combine the fundamentals of emotional well-being with a clear, no-nonsense guide to the Mental Healthcare Act 2017. We believe that when you understand your mind and your legal rights, you move from feeling overwhelmed to feeling empowered.
+            </p>
+            <p>
+              Whether you are looking for a place to start or a way to protect your peace, this is your toolkit for the journey ahead.
+            </p>
+          </motion.div>
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, delay: 0.3 }}
+            className="text-center"
+          >
+            <Button
+              asChild
+              className="bg-[#d4a373] text-white hover:bg-[#b8915f] border-2 border-[#ccd5ae] font-semibold px-8 py-6 text-lg rounded-lg transition-all duration-300 hover:scale-105"
+            >
+              <Link href="/unsaid/the-unsaid" className="flex items-center justify-center gap-2">
+                Explore The UNSAID
+                <ArrowRight className="w-5 h-5" />
+              </Link>
+            </Button>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Section 7: Bring UNSAID to Your Campus */}
+      <section className="py-16 bg-[#d4a373]">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <motion.h2
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
-            className="text-3xl sm:text-4xl lg:text-5xl font-bold text-[#d4a373] mb-8"
+            className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-8"
           >
-            The Sunday Script
+            Bring UNSAID to Your Campus
           </motion.h2>
           <motion.p
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="text-lg sm:text-xl leading-relaxed text-[#2d3748] mb-8"
+            className="text-lg sm:text-xl leading-relaxed text-white/95 mb-8"
           >
-            A late-night letter for the quietest hours of the week. Every Sunday, we deliver one anonymous truth, one legal right, and a few words for the noise you're carrying into Monday.
+            We believe the strongest communities are built on awareness and advocacy. If you are a student body, a faculty member or a corporate employee looking to foster a safer environment, we invite you to collaborate with us.
+          </motion.p>
+          <motion.p
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, delay: 0.3 }}
+            className="text-lg sm:text-xl leading-relaxed text-white/95 mb-8"
+          >
+            Our workshops are designed to equip students with the vocabulary for mental health and the legal literacy they need for the future.
           </motion.p>
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.8, delay: 0.3 }}
+            transition={{ duration: 0.8, delay: 0.4 }}
           >
             <Button
               asChild
-              className="bg-[#d4a373] text-white hover:bg-[#b8915f] border-2 border-[#ccd5ae] font-semibold px-8 py-6 text-lg rounded-lg transition-all duration-300 hover:scale-105"
+              className="bg-white text-[#d4a373] hover:bg-white/90 border-2 border-white font-semibold px-8 py-6 text-lg rounded-lg transition-all duration-300 hover:scale-105"
             >
-              <Link href="/unsaid/the-sunday-script" className="flex items-center gap-2">
-                <Mail className="w-5 h-5" />
-                Subscribe to The Sunday Script
+              <Link href="/unsaid/contact" className="flex items-center justify-center gap-2">
+                Inquire About a Workshop
+                <ArrowRight className="w-5 h-5" />
               </Link>
             </Button>
           </motion.div>

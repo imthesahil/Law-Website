@@ -1,13 +1,13 @@
 "use client"
 
 import { motion } from "framer-motion"
-import { Menu, X, ArrowLeft, Archive, Users, BookOpen } from "lucide-react"
+import { Menu, X, ArrowLeft, Headphones, Users, BookOpen } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { useState } from "react"
 import Link from "next/link"
 import Image from "next/image"
 
-export default function TheOpenRoomPage() {
+export default function ServicesPage() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
 
   return (
@@ -78,13 +78,13 @@ export default function TheOpenRoomPage() {
             transition={{ duration: 0.8 }}
             className="text-4xl sm:text-5xl lg:text-6xl font-bold text-[#d4a373] mb-12 text-center pt-16 md:pt-20"
           >
-            The Open Room
+            Services
           </motion.h1>
 
           <div className="space-y-16">
-            {/* The Archive */}
+            {/* Counselling Sessions */}
             <motion.section
-              id="archive"
+              id="counselling"
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -93,28 +93,28 @@ export default function TheOpenRoomPage() {
             >
               <div className="flex items-center gap-4 mb-6">
                 <div className="w-16 h-16 bg-[#d4a373]/20 rounded-lg flex items-center justify-center">
-                  <Archive className="w-8 h-8 text-[#d4a373]" />
+                  <Headphones className="w-8 h-8 text-[#d4a373]" />
                 </div>
-                <h2 className="text-3xl sm:text-4xl font-bold text-[#d4a373]">The Archive (Anonymous Submissions)</h2>
+                <h2 className="text-3xl sm:text-4xl font-bold text-[#d4a373]">Counselling Sessions</h2>
               </div>
               <p className="text-lg sm:text-xl leading-relaxed text-[#2d3748] mb-8">
-                A digital safe-deposit box for the thoughts you usually backspace. Drop your truths here anonymously—no judgment, no tracing, just the relief of letting them go.
+                Dedicated time to focus on your mental health with a qualified professional. We provide a safe environment to explore your challenges, find balance, and reclaim your peace of mind.
               </p>
               <div className="bg-[#fefae0] rounded-lg p-6 mb-6 border border-[#ccd5ae]">
-                <p className="text-[#2d3748]/70 text-sm mb-4">Coming Soon: Anonymous submission form</p>
-                <p className="text-[#2d3748]/60 text-sm">We're building a secure, anonymous platform where you can share your thoughts without fear of judgment or exposure.</p>
+                <p className="text-[#2d3748]/70 text-sm mb-4">Professional counselling services</p>
+                <p className="text-[#2d3748]/60 text-sm">Book a one-on-one session with our qualified mental health professionals to discuss your concerns in a confidential, supportive environment.</p>
               </div>
               <Button
                 className="bg-[#d4a373] text-white hover:bg-[#b8915f] font-semibold px-8 py-6 text-lg rounded-lg transition-all duration-300 hover:scale-105"
-                disabled
+                asChild
               >
-                Submit Anonymously (Coming Soon)
+                <Link href="/unsaid/contact">Book a Session</Link>
               </Button>
             </motion.section>
 
-            {/* The Circle */}
+            {/* Community Outreach */}
             <motion.section
-              id="circle"
+              id="outreach"
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -125,26 +125,26 @@ export default function TheOpenRoomPage() {
                 <div className="w-16 h-16 bg-[#d4a373]/20 rounded-lg flex items-center justify-center">
                   <Users className="w-8 h-8 text-[#d4a373]" />
                 </div>
-                <h2 className="text-3xl sm:text-4xl font-bold text-[#d4a373]">The Circle (Peer Support)</h2>
+                <h2 className="text-3xl sm:text-4xl font-bold text-[#d4a373]">Community Outreach</h2>
               </div>
               <p className="text-lg sm:text-xl leading-relaxed text-[#2d3748] mb-8">
-                Moderated spaces where the mask finally comes off. These aren't "fixing" sessions; they are quiet gatherings for those tired of performing wellness to find others who speak the same language.
+                We take the conversation beyond our platform and into the heart of the community. Whether it's a classroom or a corporate office, we host workshops designed to dismantle stigma and empower individuals with practical mental health awareness and rights education.
               </p>
               <div className="bg-[#fefae0] rounded-lg p-6 mb-6 border border-[#ccd5ae]">
-                <p className="text-[#2d3748]/70 text-sm mb-4">Coming Soon: Peer support sessions</p>
-                <p className="text-[#2d3748]/60 text-sm">Join moderated, safe spaces where you can connect with others who understand the weight of unspoken thoughts.</p>
+                <p className="text-[#2d3748]/70 text-sm mb-4">Workshops and training programs</p>
+                <p className="text-[#2d3748]/60 text-sm">We offer customized workshops for educational institutions, corporate offices, and community organizations focused on mental health awareness and legal rights education.</p>
               </div>
               <Button
                 className="bg-[#d4a373] text-white hover:bg-[#b8915f] font-semibold px-8 py-6 text-lg rounded-lg transition-all duration-300 hover:scale-105"
-                disabled
+                asChild
               >
-                Join The Circle (Coming Soon)
+                <Link href="/unsaid/contact">Inquire About Workshops</Link>
               </Button>
             </motion.section>
 
-            {/* Unsaid Sessions */}
+            {/* The UNSAID */}
             <motion.section
-              id="sessions"
+              id="unsaid"
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -155,20 +155,20 @@ export default function TheOpenRoomPage() {
                 <div className="w-16 h-16 bg-[#d4a373]/20 rounded-lg flex items-center justify-center">
                   <BookOpen className="w-8 h-8 text-[#d4a373]" />
                 </div>
-                <h2 className="text-3xl sm:text-4xl font-bold text-[#d4a373]">Unsaid Sessions</h2>
+                <h2 className="text-3xl sm:text-4xl font-bold text-[#d4a373]">The UNSAID</h2>
               </div>
               <p className="text-lg sm:text-xl leading-relaxed text-[#2d3748] mb-8">
                 Interactive workshops designed to bridge the gap between internal struggle and external advocacy. We provide the vocabulary to name your noise and the legal literacy to protect your peace.
               </p>
               <div className="bg-[#fefae0] rounded-lg p-6 mb-6 border border-[#ccd5ae]">
-                <p className="text-[#2d3748]/70 text-sm mb-4">Coming Soon: Workshop schedule</p>
-                <p className="text-[#2d3748]/60 text-sm">Interactive sessions combining mental health awareness with legal rights education, helping you navigate both internal and external challenges.</p>
+                <p className="text-[#2d3748]/70 text-sm mb-4">Interactive workshops and sessions</p>
+                <p className="text-[#2d3748]/60 text-sm">Join our structured programs that combine mental health awareness with legal rights education, helping you navigate both internal and external challenges.</p>
               </div>
               <Button
                 className="bg-[#d4a373] text-white hover:bg-[#b8915f] font-semibold px-8 py-6 text-lg rounded-lg transition-all duration-300 hover:scale-105"
-                disabled
+                asChild
               >
-                Explore Sessions (Coming Soon)
+                <Link href="/unsaid/contact">Explore The UNSAID</Link>
               </Button>
             </motion.section>
           </div>
@@ -177,4 +177,3 @@ export default function TheOpenRoomPage() {
     </div>
   )
 }
-

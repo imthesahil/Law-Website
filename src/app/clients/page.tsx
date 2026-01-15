@@ -123,8 +123,8 @@ export default function ClientsPage() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.8, duration: 0.6 }}
               >
-                <Link href="/brochure" className="text-white hover:text-[#d4af37] transition-colors duration-300 font-medium">
-                  Brochure
+                <Link href="/blog" className="text-white hover:text-[#d4af37] transition-colors duration-300 font-medium">
+                  Blogs
                 </Link>
               </motion.div>
             </div>
@@ -201,11 +201,11 @@ export default function ClientsPage() {
               Contact us
             </Link>
             <Link
-              href="/brochure"
+              href="/blog"
               className="block text-white hover:text-[#d4af37] transition-colors duration-300"
               onClick={() => setIsMenuOpen(false)}
             >
-              Brochure
+              Blogs
             </Link>
             <Button className="w-full bg-[#d4af37] text-[#1a5f3f] hover:bg-[#d4af37]/90 font-medium" asChild>
               <Link href="/contact-us" onClick={() => setIsMenuOpen(false)}>Book a consultation</Link>
@@ -214,40 +214,86 @@ export default function ClientsPage() {
         </motion.div>
       </motion.nav>
 
-      {/* Main Content */}
-      <div className="min-h-screen bg-gradient-to-br from-[#f8fafc] to-[#e6f4ef] py-20 pt-32">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      {/* Header Section */}
+      <section className="bg-[#1a5f3f] py-16 pt-32">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-20">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
-            className="text-center mb-16"
+            className="text-center"
           >
-            <div className="inline-flex items-center space-x-2 bg-[#d4af37]/20 px-4 py-2 rounded-full border border-[#d4af37]/30 mb-4">
-              <Users className="w-5 h-5 text-[#d4af37]" />
-              <span className="text-sm text-[#d4af37] font-medium">Our Clients</span>
-            </div>
-            <h1 className="text-4xl sm:text-5xl font-light mb-4 text-[#1a5f3f]">Clients</h1>
-            <p className="text-gray-600 text-lg max-w-2xl mx-auto leading-relaxed">
-              We work with forward-thinking founders, growing teams, and institutions.
+            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white mb-4">Our Clients</h1>
+            <p className="text-white/80 text-lg sm:text-xl max-w-2xl mx-auto leading-relaxed">
+              We're proud to work with forward-thinking companies and organizations
             </p>
           </motion.div>
+        </div>
+      </section>
 
-          {/* Placeholder for client logos/testimonials */}
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.2, duration: 0.8 }}
-            className="bg-white rounded-2xl p-12 shadow-lg text-center"
-          >
-            <p className="text-gray-500 text-lg">Client logos and testimonials will be added here.</p>
-          </motion.div>
+      {/* Scrolling Logo Marquee Section */}
+      <section className="bg-[#0f2419] py-16 overflow-hidden">
+        {/* Client logos array */}
+        {(() => {
+          const clientLogos = Array.from({ length: 8 }, (_, i) => i + 1)
+          const duplicatedLogos = [...clientLogos, ...clientLogos]
+          
+          return (
+            <>
+              {/* Row 1 - Scrolls right to left (medium speed) */}
+              <div className="logo-scroll-container flex overflow-hidden mb-8">
+                <div className="logo-scroll-row-1 flex gap-16 items-center">
+                  {duplicatedLogos.map((num, index) => (
+                    <div
+                      key={`row1-${index}`}
+                      className="flex-shrink-0 flex items-center justify-center bg-white rounded-xl p-6 shadow-lg min-w-[200px] h-[100px]"
+                    >
+                      <Image
+                        src={`/images/clients/client-${num}.png`}
+                        alt={`Client ${num}`}
+                        width={200}
+                        height={80}
+                        className="max-h-[60px] w-auto object-contain"
+                        loading="lazy"
+                      />
+                    </div>
+                  ))}
+                </div>
+              </div>
 
+              {/* Row 2 - Scrolls left to right (reverse, faster speed) */}
+              <div className="logo-scroll-container flex overflow-hidden">
+                <div className="logo-scroll-row-2 flex gap-16 items-center">
+                  {duplicatedLogos.map((num, index) => (
+                    <div
+                      key={`row2-${index}`}
+                      className="flex-shrink-0 flex items-center justify-center bg-white rounded-xl p-6 shadow-lg min-w-[200px] h-[100px]"
+                    >
+                      <Image
+                        src={`/images/clients/client-${num}.png`}
+                        alt={`Client ${num}`}
+                        width={200}
+                        height={80}
+                        className="max-h-[60px] w-auto object-contain"
+                        loading="lazy"
+                      />
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </>
+          )
+        })()}
+      </section>
+
+      {/* CTA Section */}
+      <section className="bg-gradient-to-br from-[#f8fafc] to-[#e6f4ef] py-16">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.4, duration: 0.6 }}
-            className="text-center mt-12"
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
           >
             <Button
               size="lg"
@@ -261,7 +307,7 @@ export default function ClientsPage() {
             </Button>
           </motion.div>
         </div>
-      </div>
+      </section>
     </div>
   )
 }

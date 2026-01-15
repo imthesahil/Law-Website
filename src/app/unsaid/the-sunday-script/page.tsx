@@ -15,7 +15,7 @@ export default function TheSundayScriptPage() {
       <nav className="fixed top-0 left-0 right-0 z-50 bg-[#ccd5ae]/95 backdrop-blur-sm border-b border-[#ccd5ae]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-20">
           <div className="flex items-center justify-between h-16 sm:h-20">
-            <Link href="/" className="flex items-center gap-3 cursor-pointer">
+            <Link href="/unsaid" className="flex items-center gap-3 cursor-pointer">
               {/* Logo Icon */}
               <div className="relative w-10 h-10 sm:w-12 sm:h-12 flex-shrink-0">
                 <Image
@@ -27,8 +27,8 @@ export default function TheSundayScriptPage() {
                 />
               </div>
               <div className="flex flex-col leading-tight">
-                <span className="text-[#2d3748] text-base font-medium">Unsaid by</span>
-                <span className="text-[#2d3748] text-xl font-semibold">Live Legal</span>
+                <span className="text-[#2d3748] text-2xl sm:text-3xl font-bold">UNSAID</span>
+                <span className="text-[#2d3748] text-sm sm:text-base font-medium">by Live Legal</span>
               </div>
             </Link>
             <button onClick={() => setIsMenuOpen(!isMenuOpen)} className="md:hidden p-2">
@@ -50,11 +50,14 @@ export default function TheSundayScriptPage() {
                 <Link href="/unsaid/about-us" className="text-[#2d3748]/80 hover:text-[#d4a373] transition-colors text-sm font-medium">
                   About us
                 </Link>
-                <Link href="/unsaid/the-open-room" className="text-[#2d3748]/80 hover:text-[#d4a373] transition-colors text-sm font-medium">
-                  The Open Room
+                <Link href="/unsaid/services" className="text-[#2d3748]/80 hover:text-[#d4a373] transition-colors text-sm font-medium">
+                  Services
                 </Link>
-                <Link href="/unsaid/the-sunday-script" className="text-[#d4a373] font-medium border-b-2 border-[#d4a373] pb-1 text-sm">
-                  The Sunday Script
+                <Link href="/unsaid/blogs" className="text-[#d4a373] font-medium border-b-2 border-[#d4a373] pb-1 text-sm">
+                  Blogs
+                </Link>
+                <Link href="/unsaid/the-unsaid" className="text-[#2d3748]/80 hover:text-[#d4a373] transition-colors text-sm font-medium">
+                  The UNSAID
                 </Link>
                 <Link href="/unsaid/contact" className="text-[#2d3748]/80 hover:text-[#d4a373] transition-colors text-sm font-medium">
                   Contact Us

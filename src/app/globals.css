@@ -111,6 +111,38 @@ html {
   backdrop-filter: blur(4px);
 }
 
+/* Logo scroll animation */
+@keyframes logo-scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes logo-scroll-reverse {
+  0% {
+    transform: translateX(-50%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+.logo-scroll-row-1 {
+  animation: logo-scroll 30s linear infinite;
+}
+
+.logo-scroll-row-2 {
+  animation: logo-scroll-reverse 25s linear infinite;
+}
+
+.logo-scroll-container:hover .logo-scroll-row-1,
+.logo-scroll-container:hover .logo-scroll-row-2 {
+  animation-play-state: paused;
+}
+
 @layer base {
   * {
     @apply border-border;

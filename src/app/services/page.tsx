@@ -5,6 +5,7 @@ import {
   Menu,
   X,
   FileText,
+  FileSearch,
   Briefcase,
   Users,
   Handshake,
@@ -65,6 +66,12 @@ export default function ServicesPage() {
       title: "Compliance-Aligned Documentation",
       description: "We ensure your key documents comply with current legal and regulatory requirements, helping you stay compliant, audit-ready, and focused on running your business without added legal stress.",
     },
+    {
+      icon: FileSearch,
+      title: "Legal Review",
+      description:
+        "We review your contracts and legal documents to highlight risks, ensure compliance, and improve clarity. Our goal is to help you make informed decisions and avoid issues before they arise.",
+    },
   ]
 
   const extendedServices = [
@@ -119,7 +126,7 @@ export default function ServicesPage() {
 
             {/* Desktop Navigation */}
             <div className="hidden md:flex items-center space-x-8">
-              {["Who we are?", "Services", "Clients", "UNSAID", "FAQ", "Contact us", "Brochure"].map((item, index) => {
+              {["Who we are?", "Services", "Clients", "UNSAID", "FAQ", "Contact us", "Blogs"].map((item, index) => {
                 if (item === "Who we are?") {
                   return (
                     <motion.div
@@ -206,8 +213,8 @@ export default function ServicesPage() {
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ delay: 0.2 + index * 0.1, duration: 0.6 }}
                     >
-                      <Link href="/brochure" className="text-white hover:text-[#d4af37] transition-colors duration-300 font-medium">
-                        Brochure
+                      <Link href="/blog" className="text-white hover:text-[#d4af37] transition-colors duration-300 font-medium">
+                        Blogs
                       </Link>
                     </motion.div>
                   )
@@ -290,11 +297,11 @@ export default function ServicesPage() {
               Contact us
             </Link>
             <Link
-              href="/brochure"
+              href="/blog"
               className="block text-white hover:text-[#d4af37] transition-colors duration-300"
               onClick={() => setIsMenuOpen(false)}
             >
-              Brochure
+              Blogs
             </Link>
             <Button className="w-full bg-[#d4af37] text-[#1a5f3f] hover:bg-[#d4af37]/90 font-medium" asChild>
               <Link href="/contact-us" onClick={() => setIsMenuOpen(false)}>Book a consultation</Link>
