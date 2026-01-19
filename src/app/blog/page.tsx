@@ -1,5 +1,6 @@
 import { getPublishedBlogs } from '@/lib/notion'
 import Link from 'next/link'
+import Header from '@/components/Header'
 
 // Revalidate every 5 minutes (300 seconds) to check for new content
 export const revalidate = 300
@@ -9,9 +10,11 @@ export default async function LiveLegalBlogPage() {
   const blogs = await getPublishedBlogs(databaseId)
 
   return (
-    <div className="blog-page min-h-screen bg-[#1B4332]">
-      {/* Header Section */}
-      <section className="py-16 pt-32 text-center">
+    <>
+      <Header />
+      <div className="blog-page min-h-screen bg-[#1B4332]">
+        {/* Header Section */}
+        <section className="py-16 pt-32 mt-24 text-center">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-20">
           <h1 className="text-4xl md:text-5xl font-bold text-white mb-4">Blogs</h1>
           <p className="text-white/80 mt-4 max-w-2xl mx-auto px-4">
@@ -32,9 +35,9 @@ export default async function LiveLegalBlogPage() {
               <Link 
                 href={`/blog/${blog.slug}`} 
                 key={blog.id}
-                className="group"
+                className="group block"
               >
-                <article className="bg-white rounded-lg overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-1 h-full flex flex-col">
+                <article className="bg-white rounded-lg overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-1 h-full flex flex-col cursor-pointer">
                   {/* Featured Image */}
                   <div className="relative h-48 bg-gradient-to-br from-green-800 to-green-900 flex-shrink-0">
                     {blog.featuredImage ? (
@@ -86,6 +89,7 @@ export default async function LiveLegalBlogPage() {
           </div>
         )}
       </section>
-    </div>
+      </div>
+    </>
   )
 }

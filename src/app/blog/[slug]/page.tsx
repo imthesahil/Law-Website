@@ -3,31 +3,36 @@ import { notFound } from 'next/navigation'
 import ReactMarkdown from 'react-markdown'
 import remarkGfm from 'remark-gfm'
 import Link from 'next/link'
+import Header from '@/components/Header'
+import BlogDate from '@/components/BlogDate'
 
 export const revalidate = 300
 
-export default async function BlogPostPage({ params }: { params: { slug: string } }) {
+export default async function BlogPostPage({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = await params
   const databaseId = process.env.NOTION_LIVE_LEGAL_DB_ID!
-  const blog = await getBlogBySlug(databaseId, params.slug)
+  const blog = await getBlogBySlug(databaseId, slug)
 
   if (!blog) {
     notFound()
   }
 
   return (
-    <div className="min-h-screen bg-white">
-      {/* Header with Back Button */}
-      <header className="bg-[#1B4332] py-8">
-        <div className="container mx-auto px-4">
-          <Link 
-            href="/blog" 
-            className="text-[#d4a373] hover:text-[#b8915f] transition-colors inline-flex items-center gap-2"
-          >
-            <span>←</span>
-            <span>Back to Blogs</span>
-          </Link>
+    <>
+      <Header />
+      <div className="min-h-screen bg-white pt-16 sm:pt-20">
+        {/* Secondary navigation - Back to blogs */}
+        <div className="bg-[#1B4332] py-4">
+          <div className="container mx-auto px-4">
+            <Link 
+              href="/blog" 
+              className="text-[#d4a373] hover:text-[#b8915f] transition-colors inline-flex items-center gap-2"
+            >
+              <span>←</span>
+              <span>Back to Blogs</span>
+            </Link>
+          </div>
         </div>
-      </header>
 
       {/* Article Content */}
       <article className="container mx-auto px-4 py-12 max-w-4xl">
@@ -37,11 +42,7 @@ export default async function BlogPostPage({ params }: { params: { slug: string 
             {blog.category}
           </span>
           <span>•</span>
-          <span>{new Date(blog.date).toLocaleDateString('en-US', { 
-            month: 'long', 
-            day: 'numeric', 
-            year: 'numeric' 
-          })}</span>
+          <BlogDate date={blog.date} />
           <span>•</span>
           <span>By {blog.author}</span>
         </div>
@@ -69,22 +70,24 @@ export default async function BlogPostPage({ params }: { params: { slug: string 
           </div>
         )}
 
-        {/* Content - Markdown Rendered */}
-        <div className="prose prose-lg max-w-none 
-                      prose-headings:text-gray-900 prose-headings:font-bold
-                      prose-h1:text-4xl prose-h2:text-3xl prose-h3:text-2xl
-                      prose-p:text-gray-700 prose-p:leading-relaxed
-                      prose-a:text-[#d4a373] prose-a:no-underline hover:prose-a:underline
-                      prose-strong:text-gray-900 prose-strong:font-bold
-                      prose-ul:list-disc prose-ol:list-decimal
-                      prose-li:text-gray-700
-                      prose-blockquote:border-l-4 prose-blockquote:border-[#d4a373] prose-blockquote:pl-4 prose-blockquote:italic
-                      prose-code:bg-gray-100 prose-code:px-2 prose-code:py-1 prose-code:rounded
-                      prose-img:rounded-lg prose-img:shadow-md">
-          <ReactMarkdown remarkPlugins={[remarkGfm]}>
-            {blog.content || ''}
-          </ReactMarkdown>
-        </div>
+        {/* Content - Markdown Rendered - Only render if content exists and is not empty */}
+        {blog.content && blog.content.trim().length > 0 && (
+          <div className="prose prose-lg max-w-none 
+                        prose-headings:text-gray-900 prose-headings:font-bold
+                        prose-h1:text-4xl prose-h2:text-3xl prose-h3:text-2xl
+                        prose-p:text-gray-700 prose-p:leading-relaxed
+                        prose-a:text-[#d4a373] prose-a:no-underline hover:prose-a:underline
+                        prose-strong:text-gray-900 prose-strong:font-bold
+                        prose-ul:list-disc prose-ol:list-decimal
+                        prose-li:text-gray-700
+                        prose-blockquote:border-l-4 prose-blockquote:border-[#d4a373] prose-blockquote:pl-4 prose-blockquote:italic
+                        prose-code:bg-gray-100 prose-code:px-2 prose-code:py-1 prose-code:rounded
+                        prose-img:rounded-lg prose-img:shadow-md">
+            <ReactMarkdown remarkPlugins={[remarkGfm]}>
+              {blog.content}
+            </ReactMarkdown>
+          </div>
+        )}
 
         {/* Back Button Footer */}
         <div className="mt-16 pt-8 border-t border-gray-200">
@@ -96,7 +99,8 @@ export default async function BlogPostPage({ params }: { params: { slug: string 
           </Link>
         </div>
       </article>
-    </div>
+      </div>
+    </>
   )
 }
 

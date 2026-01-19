@@ -1,5 +1,6 @@
 import { getPublishedBlogs } from '@/lib/notion'
 import Link from 'next/link'
+import UnsaidHeader from '@/app/unsaid/components/UnsaidHeader'
 
 // Revalidate every 5 minutes to check for new content
 export const revalidate = 300
@@ -9,9 +10,11 @@ export default async function UnsaidBlogPage() {
   const blogs = await getPublishedBlogs(databaseId)
 
   return (
-    <div className="blog-page min-h-screen bg-[#fefae0]">
-      {/* Header Section */}
-      <section className="py-16 pt-32 text-center bg-[#ccd5ae]">
+    <>
+      <UnsaidHeader />
+      <div className="blog-page min-h-screen bg-[#fefae0]">
+        {/* Header Section */}
+        <section className="py-16 pt-32 mt-24 text-center bg-[#ccd5ae]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-20">
           <h1 className="text-4xl md:text-5xl font-bold text-gray-800 mb-4">Blogs</h1>
           <p className="text-gray-700 mt-4 max-w-2xl mx-auto px-4">
@@ -32,9 +35,9 @@ export default async function UnsaidBlogPage() {
               <Link 
                 href={`/unsaid/blogs/${blog.slug}`} 
                 key={blog.id}
-                className="group"
+                className="group block"
               >
-                <article className="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-1 h-full flex flex-col">
+                <article className="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-1 h-full flex flex-col cursor-pointer">
                   {/* Featured Image */}
                   <div className="relative h-48 bg-gradient-to-br from-[#d4a373] to-[#e9edc9] flex-shrink-0">
                     {blog.featuredImage ? (
@@ -86,6 +89,7 @@ export default async function UnsaidBlogPage() {
           </div>
         )}
       </section>
-    </div>
+      </div>
+    </>
   )
 }
