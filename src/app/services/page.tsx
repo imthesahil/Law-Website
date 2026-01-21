@@ -40,37 +40,44 @@ export default function ServicesPage() {
       icon: FileText,
       title: "Corporate Drafting",
       description: "We establish strong legal foundations from the start. Our corporate drafting delivers precise, compliant documentation tailored to your business operations.",
+      slug: "/services/corporate-drafting",
     },
     {
       icon: Handshake,
       title: "Business Agreements",
       description: "Whether it's clients or partners, we create agreements that protect your interests and minimise future conflicts. Each document reflects your commercial terms so expectations are clear from day one.",
+      slug: "/services/business-agreements",
     },
     {
       icon: Users,
       title: "HR & Workplace Policies",
       description: "We design HR policies that are easy to follow, legally compliant, and aligned with your workplace needs, supporting efficient operations and a healthy work culture.",
+      slug: "/services/hr-workplace-policies",
     },
     {
       icon: Briefcase,
       title: "Vendor Agreements",
       description: "We draft vendor agreements that clearly outline scope, timelines, payments, and responsibilities, helping you manage vendors with confidence while reducing misunderstandings and legal risks.",
+      slug: "/services/vendor-agreements",
     },
     {
       icon: ClipboardCheck,
       title: "Service-Level Agreements",
       description: "We draft SLAs that clearly define performance standards, deliverables, and accountability, ensuring transparency and supporting strong, professional client relationships.",
+      slug: "/services/service-level-agreements",
     },
     {
       icon: Shield,
       title: "Compliance-Aligned Documentation",
       description: "We ensure your key documents comply with current legal and regulatory requirements, helping you stay compliant, audit-ready, and focused on running your business without added legal stress.",
+      slug: "/services/compliance-aligned-documentation",
     },
     {
       icon: FileSearch,
       title: "Legal Review",
       description:
         "We review your contracts and legal documents to highlight risks, ensure compliance, and improve clarity. Our goal is to help you make informed decisions and avoid issues before they arise.",
+      slug: "/services/legal-review",
     },
   ]
 
@@ -79,11 +86,13 @@ export default function ServicesPage() {
       icon: UserCheck,
       title: "Legal Hiring Consultancy",
       description: "We support law firms and other organisations in hiring the right legal talent by closely understanding their requirements and matching them with qualified professionals.",
+      slug: "/services/legal-hiring-consultancy",
     },
     {
       icon: BookOpen,
       title: "Moot Court Programs for Colleges",
       description: "We organise structured moot court sessions for colleges that give students hands-on experience in legal research, drafting, and courtroom advocacy.",
+      slug: "/services/moot-courts",
     },
   ]
 
@@ -329,21 +338,25 @@ export default function ServicesPage() {
           {/* Main Services */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8 mb-16">
             {services.map((service, index) => (
-              <motion.div
-                key={service.title}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ delay: index * 0.1, duration: 0.6 }}
-                viewport={{ once: true }}
-                whileHover={{ y: -10, scale: 1.02 }}
-                className="bg-white border border-gray-200 rounded-2xl p-6 lg:p-8 shadow-lg hover:shadow-xl transition-all duration-300"
-              >
-                <div className="w-16 h-16 bg-[#1a5f3f]/5 rounded-2xl flex items-center justify-center mb-6">
-                  <service.icon className="w-8 h-8 text-[#1a5f3f]" />
-                </div>
-                <h3 className="text-xl font-semibold mb-4 text-gray-800">{service.title}</h3>
-                <p className="text-gray-600 leading-relaxed">{service.description}</p>
-              </motion.div>
+              <Link key={service.title} href={service.slug}>
+                <motion.div
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ delay: index * 0.1, duration: 0.6 }}
+                  viewport={{ once: true }}
+                  whileHover={{ y: -10, scale: 1.02 }}
+                  className="bg-white border border-gray-200 rounded-2xl p-6 lg:p-8 shadow-lg hover:shadow-xl transition-all duration-300 cursor-pointer"
+                >
+                  <div className="w-16 h-16 bg-[#1a5f3f]/5 rounded-2xl flex items-center justify-center mb-6">
+                    <service.icon className="w-8 h-8 text-[#1a5f3f]" />
+                  </div>
+                  <h3 className="text-xl font-semibold mb-4 text-gray-800">{service.title}</h3>
+                  <p className="text-gray-600 leading-relaxed">{service.description}</p>
+                  <div className="mt-4 flex items-center text-[#1a5f3f] font-medium">
+                    Learn more <ArrowRight className="ml-2 w-4 h-4" />
+                  </div>
+                </motion.div>
+              </Link>
             ))}
           </div>
 
@@ -361,21 +374,25 @@ export default function ServicesPage() {
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
               {extendedServices.map((service, index) => (
-                <motion.div
-                  key={service.title}
-                  initial={{ opacity: 0, y: 30 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ delay: index * 0.2, duration: 0.6 }}
-                  viewport={{ once: true }}
-                  whileHover={{ y: -10, scale: 1.02 }}
-                  className="bg-white border border-gray-200 rounded-2xl p-6 lg:p-8 shadow-lg hover:shadow-xl transition-all duration-300"
-                >
-                  <div className="w-16 h-16 bg-[#1a5f3f]/5 rounded-2xl flex items-center justify-center mb-6">
-                    <service.icon className="w-8 h-8 text-[#1a5f3f]" />
-                  </div>
-                  <h3 className="text-xl font-semibold mb-4 text-gray-800">{service.title}</h3>
-                  <p className="text-gray-600 leading-relaxed">{service.description}</p>
-                </motion.div>
+                <Link key={service.title} href={service.slug}>
+                  <motion.div
+                    initial={{ opacity: 0, y: 30 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ delay: index * 0.2, duration: 0.6 }}
+                    viewport={{ once: true }}
+                    whileHover={{ y: -10, scale: 1.02 }}
+                    className="bg-white border border-gray-200 rounded-2xl p-6 lg:p-8 shadow-lg hover:shadow-xl transition-all duration-300 cursor-pointer"
+                  >
+                    <div className="w-16 h-16 bg-[#1a5f3f]/5 rounded-2xl flex items-center justify-center mb-6">
+                      <service.icon className="w-8 h-8 text-[#1a5f3f]" />
+                    </div>
+                    <h3 className="text-xl font-semibold mb-4 text-gray-800">{service.title}</h3>
+                    <p className="text-gray-600 leading-relaxed">{service.description}</p>
+                    <div className="mt-4 flex items-center text-[#1a5f3f] font-medium">
+                      Learn more <ArrowRight className="ml-2 w-4 h-4" />
+                    </div>
+                  </motion.div>
+                </Link>
               ))}
             </div>
           </motion.div>
