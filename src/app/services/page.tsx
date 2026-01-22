@@ -14,6 +14,7 @@ import {
   ArrowRight,
   UserCheck,
   BookOpen,
+  ShieldCheck,
 } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { useState } from "react"
@@ -78,6 +79,12 @@ export default function ServicesPage() {
       description:
         "We review your contracts and legal documents to highlight risks, ensure compliance, and improve clarity. Our goal is to help you make informed decisions and avoid issues before they arise.",
       slug: "/services/legal-review",
+    },
+    {
+      icon: ShieldCheck,
+      title: "POSH Compliance",
+      description: "We help organisations comply with the Sexual Harassment of Women at Workplace (Prevention, Prohibition and Redressal) Act by offering complete POSH support — from policy drafting to acting as an External Member on your Internal Committee.",
+      slug: "/services/posh-compliance",
     },
   ]
 
